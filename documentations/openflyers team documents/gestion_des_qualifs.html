@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>Database description</title>
+</head>
+<body>
+<div align="center">
+<h1>Gestion des qualifications<br>
+</h1>
+$Id: gestion_des_qualifs.html,v 1.2 2004/09/01 09:32:39 claratte Exp $ <br>
+Purpose: Gestion des qualifications<br>
+Author: Christophe Laratte<br>
+</div>
+<br>
+<span style="text-decoration: underline; font-weight: bold;">But :</span><br>
+<br>
+Permettre au syst&egrave;me d'emp&eacute;cher aux utilisateurs
+d'effectuer des r&eacute;servations pour un membre avec un avion pour
+lequel il n'est pas ou plus qualifi&eacute;.<br>
+<br>
+Le syst&egrave;me doit &ecirc;tre g&eacute;n&eacute;rique et ne pas
+&ecirc;tre orient&eacute; en dur (dans la base de donn&eacute;es) pour
+l'aviation l&eacute;g&egrave;re.<br>
+<br>
+Il doit pouvoir g&eacute;rer indiff&eacute;remment les qualifs,
+licences, visites m&eacute;dicales. Tous ces &eacute;l&eacute;ments
+sont d&eacute;nomm&eacute;s "qualifs".<br>
+<br>
+La mise &agrave; jour de ces donn&eacute;es doit pouvoir &ecirc;tre
+effectu&eacute;e partiellement, totalement ou nullement par les membres
+concern&eacute;s.<br>
+<br>
+Voici tout d'abord un exemple :<br>
+<br>
+Un club A consid&egrave;re que pour voler sur un avion de type
+DR400-120, il faut :<br>
+<br>
+- avoir sa cotisation au club &agrave; jour<br>
+<br>
+- avoir sa licence f&eacute;d&eacute;rale &agrave; jour<br>
+<br>
+- avoir sa visite m&eacute;dicale de classe 1 ou de classe 2 &agrave;
+jour<br>
+<br>
+- avoir sa qualif SEP associ&eacute;e &agrave; un brevet &agrave; jour
+ou avoir son brevet de base ou avoir &eacute;t&eacute; autoris&eacute;
+par un instructeur dans le cas d'un &eacute;l&egrave;ve<br>
+<br>
+- avoir &eacute;t&eacute; l&acirc;ch&eacute; sur un avion DR400-120 ou
+DR400-180<br>
+<br>
+Il faut dissocier :<br>
+<br>
+- les d&eacute;finitions de qualifs (licence f&eacute;d&eacute;rale,
+visite m&eacute;dicale classe 1, visite m&eacute;dicale classe 2, SEP,
+PPL, CPL, ATPL, BB, monomoteur &agrave; piston, l&acirc;ch&eacute;
+DR400-120, l&acirc;ch&eacute; DR400-180)<br>
+<br>
+- les d&eacute;tentions de qualifs (poss&eacute;der une licence
+f&eacute;d&eacute;rale, une visite m&eacute;dicale de classe 2, une
+SEP, un PPL, &ecirc;tre l&acirc;ch&eacute; DR400-180)<br>
+<br>
+- les obligations li&eacute;es &agrave; l'avion (cf. l'exemple)<br>
+<br>
+Parmi toutes ces obligations, une seule apparait en dure dans la base :
+la cotisation au club. En effet, de sa validit&eacute; d&eacute;pend
+l'acc&egrave;s possible ou non au cahier de r&eacute;servation. Il
+s'agit donc d'un &eacute;l&eacute;ment bloquant d'un niveau
+sup&eacute;rieur aux autres qualifs.<br>
+<br>
+<span style="text-decoration: underline; font-weight: bold;">Au niveau
+de la base de donn&eacute;es :</span><br>
+<br>
+<span style="text-decoration: underline;">Rajout de 1 bit dans le champ
+PERMITS de la table </span><span
+ style="font-weight: bold; text-decoration: underline;">profiles</span><span
+ style="text-decoration: underline;"> :</span>
+<ul>
+  <li>set_own_limitation</li>
+</ul>
+Le bit set_own_qualifications existe d&eacute;j&agrave;. S'il est
+&agrave; 1, le bit set_own_limitation doit l'&ecirc;tre
+&eacute;galement.<br>
+<br>
+<span style="text-decoration: underline;">Rajout d'une table contenant
+les d&eacute;finitions de qualifs
+d&eacute;nomm&eacute;e </span><span
+ style="font-weight: bold; text-decoration: underline;">qualification</span><span
+ style="text-decoration: underline;">
+et contenant les champs suivants :</span>
+<ul>
+  <li>ID (int(10) unsigned auto_increment)<br>
+  </li>
+  <li>NAME (varchar(255))</li>
+  <li>TIME_LIMITATION (tinyint(3) unsigned) seules valeurs
+autoris&eacute;es : 0 et 1<br>
+  </li>
+</ul>
+ID d&eacute;finit la cl&eacute; primaire unique.<br>
+NAME contient le nom devant appara&icirc;tre dans les combos.<br>
+TIME_LIMITATION est un flag. Il sert &agrave; d&eacute;finir le type
+de comportement de la qualif. Ainsi s'il est &agrave; 1, la qualif a
+une date de
+p&eacute;remption sinon elle n'en a pas (valable &agrave; vie).<br>
+<br>
+<span style="text-decoration: underline;">Rajout d'une table faisant le
+lien entre les utilisateurs et la table
+qualif, d&eacute;nomm&eacute;e </span><span
+ style="font-weight: bold; text-decoration: underline;">members_qualifs</span><span
+ style="text-decoration: underline;">
+:</span><br>
+<ul>
+  <li>MEMBERNUM (int(10) unsigned)</li>
+  <li>QUALIFID (int(10) unsigned)</li>
+  <li>EXPIREDATE (date)</li>
+</ul>
+MEMBERNUM est li&eacute; avec NUM de la table members.<br>
+QUALIFID est li&eacute; avec ID de la table qualification.<br>
+EXPIREDATE contient une date de fin de validit&eacute; dans le cas
+o&ugrave; TIMELIMITATION de la QUALIF associ&eacute;e est mis.<br>
+<br>
+<span style="text-decoration: underline;">Rajout d'une table </span><span
+ style="font-weight: bold; text-decoration: underline;">aircrafts_qualifs</span><span
+ style="text-decoration: underline;"> :</span><br>
+<ul>
+  <li>AIRCRAFTNUM (int(10) unsigned)</li>
+  <li>CHECKNUM (tinyint(3) unsigned)</li>
+  <li>QUALIFID (int(10) unsigned)</li>
+</ul>
+AIRCRAFTNUM est li&eacute; avec NUM de la table aircrafts.<br>
+CHECKNUM permet de num&eacute;roter les groupes de qualifications
+requises (cf. exemple ci-dessous).<br>
+QUALIFID est li&eacute; avec ID de la table qualification.<br>
+<br>
+<span style="text-decoration: underline; font-weight: bold;">Ex du
+contenu des tables par rapport &agrave; l'exemple du dessus :<br>
+</span><span style="font-weight: bold;"></span><br>
+Attention, dans l'exemple, nous mettons des lettres (tel FFA) &agrave;
+la place d'un nombre pour en faciliter le rep&eacute;rage dans
+l'exemple.<span style="text-decoration: underline; font-weight: bold;"><br>
+</span>
+<ul>
+  <li>table qualification (seuls les les champs SHORTNAME et LONGNAME
+sont pr&eacute;cis&eacute;s ci-dessous, le bit time_limitation
+&eacute;tant pr&eacute;cis&eacute; si n&eacute;cessaire) :</li>
+  <ul>
+    <li>FFA, Licence FFA, time_limitation</li>
+    <li>VM1, Visite m&eacute;dicale classe 1, time_limitation</li>
+    <li>VM2, Visite m&eacute;dicale classe 2, time_limitation</li>
+    <li>SEP, Monomoteur &agrave; piston, time_limitation</li>
+    <li>BB, Brevet de base, time_limitation</li>
+    <li>PPL, Licence pilote priv&eacute; PPL</li>
+    <li>CPL, Licence pilote professionnel CPL</li>
+    <li>ATPL, Licence pilote de ligne ATPL</li>
+    <li>DR400-120, l&acirc;ch&eacute; sur DR400-120</li>
+    <li>DR400-180, l&acirc;ch&eacute; sur DR400-180</li>
+  </ul>
+</ul>
+<ul>
+  <li>table members_qualifs : (poss&eacute;der une licence
+f&eacute;d&eacute;rale, une visite m&eacute;dicale de classe 2, une
+SEP, un PPL, &ecirc;tre l&acirc;ch&eacute; DR400-180) (seul les champs
+QUALIF et LIMITATION sont pr&eacute;cis&eacute;s<br>
+  </li>
+  <ul>
+    <li>FFA, 2004-12-31</li>
+    <li>VM2, 2005-06-06</li>
+    <li>SEP,2005-04-06</li>
+    <li>PPL</li>
+    <li>DR400-180</li>
+  </ul>
+</ul>
+Voici la r&egrave;gle a respecter pour l'avion DR400-120 suivant les
+&eacute;l&eacute;ments &eacute;dict&eacute;s au d&eacute;but :<br>
+<br>
+FFA&amp;(VM1|VM2)&amp;((SEP&amp;(PPL|CPL|ATPL))|BB)&amp;(DR400-120|DR400-180)<br>
+<br>
+Ce qui se traduit pour la table aircrafts_qualifs par :<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Contenu de la table pour cet avion :<br>
+&nbsp;&nbsp;&nbsp;&nbsp; (CheckNum,QualifId)<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1 ; Id de FFA<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2 ; Id de VM1<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2 ; Id de VM2<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 3 ; Id de SEP<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 3 ; Id de BB<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4 ; Id de BB<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4 ; Id de PPL<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4 ; Id de CPL<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4 ; Id de ATPL<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 5 ; Id de DR400-120<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 5 ; Id de DR400-180<br>
+<br>
+Pour qu'une personne puisse voler sur l'avion, il suffit de
+v&eacute;rifier que pour chaque niveau de CHECKNUM, il existe au moins
+une qualif (en &eacute;tat de validit&eacute;) associ&eacute;e au
+CHECKNUM.<br>
+<br>
+<span style="text-decoration: underline; font-weight: bold;">Au niveau
+du cahier de r&eacute;servation :</span><br>
+<br>
+Un test est rajout&eacute; lors des r&eacute;servations pour savoir si
+le membre concern&eacute; r&eacute;pond bien &agrave; la r&egrave;gle
+d&eacute;finie pour l'avion.<br>
+<br>
+De plus, il est toujours possible pour un instructeur effectuant la
+r&eacute;servation pour un autre membre de surpasser un r&eacute;sultat
+n&eacute;gatif &agrave; ce test. Cela permet de faire voler les
+&eacute;l&egrave;ves en solo.<br>
+<br>
+Si les droits sont donn&eacute;es aux utilisateurs, gestion des
+qualifications ou gestion des dates de p&eacute;remption ou rien.<br>
+<br>
+<span style="text-decoration: underline; font-weight: bold;">Au niveau
+de la partie administration :</span><br>
+<br>
+Rajout de la gestion des tables qualification et aircrafts_qualifs.
+Gestion des qualifications pour chaque membre.<span
+ style="text-decoration: underline; font-weight: bold;"></span><br>
+</body>
+</html>

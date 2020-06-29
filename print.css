@@ -1,0 +1,150 @@
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * print.css
+ *
+ * Cascading style sheet for printing
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program (file license.txt);
+ * if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * 
+ * @category   Cascading stylesheet
+ * @author     Patrick HUBSCHER <chakram@openflyers.org>
+ * @copyright  2003-2005 The OpenFlyers Group <devteam@openflyers.org>
+ * @license    http://www.gnu.org/licenses/gpl.html  GNU-GPL License
+ * @version    CVS: $Id: print.css,v 1.2.4.2 2005/10/28 17:44:05 claratte Exp $
+ * @link       http://openflyers.org
+ * @since      Fri Dec 13 2002
+ */
+
+/* default */
+
+body {background-color:#ffffff;font-family:Arial;font-size:10px;text-align:justify}
+a {font-family:Arial;font-size:12px;color:black;text-decoration:none}
+p {font-family:Arial;font-size:6px;text-align:justify}
+ul {text-align:justify}
+table {font-family: Arial;font-size:6px;text-align:center}
+
+/* POP-UPs */
+
+.CALENDAR_POPUP {position:absolute;visibility:hidden;background-color:white}
+
+/* CALENDAR_POPUP style */
+
+.cal {color:yellow;font-size:18px}
+.cal_label_day {font-size:18px}
+.calwithback {background-color:#DCE4F0;font-size:18px}
+.calthismonth {color:green;font-size:18px}
+.calothermonth {font-size:18px}
+.caltoday {font-size:18px;text-align:right;color: white; background-color:#22DD22}
+.calmonth {font-size:18px;text-align:right}
+.calnotclickable {font-size:10px}
+A.textlink {font-size:18px; color: black}
+A.cal { text-decoration:none; color:#000000}
+A.calthismonth { text-decoration:none; color:#000000}
+A.calothermonth { text-decoration:none; color:#BBC3CE}
+.calnotclickable { color:#808080}
+.disabledtextlink { font-family:arial; font-size: 18px; color: #808080}
+
+/* FORMs style */
+
+.FORM_LABEL {font-size:14px;font-weight:bold}
+.FORM_TITLE {font-size:16px;font-weight:bold}
+
+/* ARRAY DISPLAY */
+.TABLE {font-size:14px;font-weight:bold;background-color:#DCE4F0}
+
+/* space block */
+.b{border-left: 1px solid black;}
+
+/* fonts */
+
+.TITLE_FONT {font-size:26px;font-weight:bold}
+.SUBTITLE_FONT {font-size:18px;font-weight:bold;text-align:left}
+.MINI_TITLE_FONT {font-size:18px;font-weight:bold;text-align:center}
+.HEADER_FORM_FONT {font-size:18px}
+.CALENDAR {font-weight:bold;font-size:12px}
+.TIME_DISPLAYS {font-weight:bold;font-size:12px; display: none;}
+.INFO_BOX {color:black;text-align:justify;font-size:12px;font-weight:bold; display: none;}
+.CALLSIGN {font-size:14px;font-weight:bold}
+.CALLSIGN_MENU {font-size:14px;font-weight:bold;cursor:pointer}
+.AIRCRAFT_TYPE {font-size:12px}
+.H{font-size:14px;font-weight:bold}
+.PILOT {font-size:12px;}
+.INSTRUCTOR {font-size:12px;font-weight:bold}
+.MENU {background-color:#ffffff;color:white;cursor:pointer; display: none;}
+.GREEN {color:green}
+.WHITE {font-size:14px; color:white}
+.WHITE_BOLD {font-size:14px; color:white;font-weight:bold}
+.ARROW {font-size:26px;font-weight:bold;cursor:pointer}
+
+/* background */
+
+.STANDARD_BACKGROUND {background-color:#DCE4F0} /* should be like BODY background*/
+.WHITE_BACKGROUND {background-color:#FFFFFF}
+.BLACK_BACKGROUND {background-color:#000000}
+.RED_BACKGROUND {background-color:red}
+.UNFREE_BACKGROUND {background-color:#BB8822;cursor:pointer}
+.OTHER_SCHOOL_BACKGROUND {background-color:#E04444;cursor:pointer}
+.OTHER_BACKGROUND {background-color:#FF6655;cursor:pointer}
+.OWN_SCHOOL_BACKGROUND {background-color:#44BB44;cursor:pointer}
+.OWN_SLOT_BACKGROUND {background-color:#22DD22;cursor:pointer}
+
+/* night color background */
+.n {background-color:#337AFF;cursor:pointer}
+
+/* twilight color background */
+.t {background-color:#66CCFF;cursor:pointer}
+
+/* day color background */
+.d {background-color:#dddddd;cursor:pointer}
+
+.FONDCLAIR {background-color:#CBD3DE}
+
+.FONDTRESCLAIR {background-color:#DCE4EF}
+
+.FONDFONCE {background-color:#687E9D}
+
+/* pour la taille */
+
+.STITRE {font-size:18px}
+
+.SSTITRE {font-size:26px;font-weight:bold}
+
+/* pour la couleur et l'épaisseur */
+
+.GRASROUGE {color:#BB0000;font-weight:bold}
+
+.GRASVERT {color:green;font-weight:bold}
+
+.GRAS {font-weight:bold}
+
+.GRASGROS {font-size: 12px;font-weight:bold}
+
+/* Align of cellular */
+
+.RIGHT {text-align:right}
+.CENTER {text-align:center}
+.LEFT {text-align:left}
+.JUSTIFY {text-align:justify}
+
+/* sauts de page pour l'impression */
+
+BR.sautdepage {page-break-after:always}
+
+/* divers */
+IMG { display:none; }

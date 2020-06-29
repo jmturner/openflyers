@@ -1,0 +1,57 @@
+UL.man-side_top {
+	MARGIN-TOP: 0.5em; PADDING-LEFT: 0.7em; MARGIN-BOTTOM: 0.5em; MARGIN-LEFT: 0.7em
+}
+UL.man-side_up {
+	MARGIN-TOP: 0.5em; PADDING-LEFT: 0.7em; MARGIN-BOTTOM: 0.5em; MARGIN-LEFT: 0.7em
+}
+UL.man-side_download {
+	MARGIN-TOP: 0.5em; PADDING-LEFT: 0.7em; MARGIN-BOTTOM: 0.5em; MARGIN-LEFT: 0.7em
+}
+LI.man-side_top {
+	LIST-STYLE-IMAGE: url(/gifs/caret-t.gif); TEXT-INDENT: -0.4em; LIST-STYLE-TYPE: circle
+}
+LI.man-side_up {
+	LIST-STYLE-IMAGE: url(/gifs/caret-u.gif); TEXT-INDENT: -0.4em; LIST-STYLE-TYPE: disc
+}
+LI.man-side_download {
+	LIST-STYLE-IMAGE: url(/gifs/box-0.gif); TEXT-INDENT: -0.4em; LIST-STYLE-TYPE: square
+}
+UL.man-side_pages {
+	MARGIN-TOP: 0.5em; PADDING-LEFT: 0.8em; LIST-STYLE-IMAGE: url(/gifs/box-0.gif); MARGIN-BOTTOM: 0.5em; MARGIN-LEFT: 0.8em; LIST-STYLE-TYPE: square
+}
+LI.man-side_page {
+	FONT-SIZE: 80%; TEXT-INDENT: -0.4em
+}
+TD.man-nav_prev {
+	FONT-SIZE: 75%
+}
+TD.man-nav_next {
+	FONT-SIZE: 75%
+}
+TD.man-nav_view {
+	FONT-SIZE: 75%
+}
+TD.man-nav_updated {
+	FONT-SIZE: 75%
+}
+TD.man-nav_download {
+	FONT-SIZE: 75%
+}
+TD.man-nav_languages {
+	FONT-SIZE: 75%
+}
+CODE {
+	MARGIN: 0px; FONT-FAMILY: "andale mono", "monotype.com", "courier new", courier, monospace
+}
+PRE {
+	MARGIN: 0px; FONT-FAMILY: "andale mono", "monotype.com", "courier new", courier, monospace
+}
+TT {
+	MARGIN: 0px; FONT-FAMILY: "andale mono", "monotype.com", "courier new", courier, monospace
+}
+TABLE.EXAMPLE {
+	MARGIN-TOP: 1em
+}
+TABLE.EXAMPLE P {
+	MARGIN-TOP: 0em; MARGIN-BOTTOM: 0em
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>Database description</title>
+</head>
+<body>
+<div align="center">
+<h1>Coding rules</h1>
+$Id: coding\040rules.html,v 1.10.4.1 2005/08/20 11:29:51 claratte Exp $ <br>
+Purpose: Rules for coding<br>
+Author: Christophe Laratte<br>
+</div>
+<br>
+<i>We try, each time it's possible, to comply with <a
+ href="PEAR%20coding%20standards.html">PEAR coding
+standards</a>
+.<br>
+</i>
+<h3><u>Release number rules</u></h3>
+<ul>
+  <li>A published release is a release that is zipped and accessible by
+public via http://openflyers.org.<br>
+  </li>
+  <li>We use X.Y.Z release number format to name published releases.</li>
+  <li>In X.Y.Z release number format, the Z should be 0 except for
+minor bug patches.<br>
+  </li>
+  <li>When a new release is ready, we tag it via CVS (ie: 1.2.0).<br>
+  </li>
+  <li>The first changed after a tagged release should be name by a new
+release number in the config.php (OF_RELEASE const). The number format
+should be X.Y.Zalpha<br>
+  </li>
+  <li>When the release is mature enough to be tested, it should be
+renamed X.Y.Zbeta and tagged in CVS.</li>
+  <li>If several beta release should be tagged, the number format
+should X.Y.Zbeta1, X.Y.Zbeta2, etc.</li>
+  <li>When a release is ready to be tested in production, it should be
+renamed X.Y.Zrc1 and tagged via CVS.<br>
+  </li>
+</ul>
+<h3><u>General rules</u></h3>
+<ul>
+  <li>Write <b>false </b>and<b> </b><b>true</b> in small. Doing
+this,
+we are compatible with JavaScript format.</li>
+  <li>We use an indent of 4 spaces, with no tabs (see : <a
+ href="http://pear.php.net/manual/en/standards.php#standards.indenting">PEAR
+standard indenting</a>
+).</li>
+  <li>We use standard unix end of line : \n.<br>
+  </li>
+  <li>Functions are named like that : fooFunction (see : <a
+ href="http://pear.php.net/manual/en/standards.funcdef.php">PEAR
+function definitions)</a><br>
+  </li>
+</ul>
+<h3><u>Directory and files rules</u></h3>
+<ul>
+  <li>img directory should contain only true image files.</li>
+  <li>javascript directory should contain only javascript files (with
+extension .js).</li>
+  <li>php files that are accessible from a client browser via http
+should be in the root directory.</li>
+</ul>
+<h3><u>PHP rules</u></h3>
+<ul>
+  <li>Use <b>&lt;?php</b> tab instead of &lt;? . We recommand to set <b>short_open_tag</b>
+Off in the php.ini file.<br>
+  </li>
+  <li>Use simple brackets (ex : echo('houhou');) instead of double
+brackets (ex : echo("houhou");). This increase PHP speed.</li>
+  <li>according to PEAR rules, private variables should begin with an
+underscore (ie: <span style="font-style: italic;">_name</span>).</li>
+  <li>XHTML open-tags should have his miror closing-tag in the same php
+file.</li>
+</ul>
+<h3><u>MySQL rules</u></h3>
+<ul>
+  <li>Table names should be singular (ie: <span
+ style="font-style: italic;">member</span> is correct, <span
+ style="font-style: italic;">members</span> is not).</li>
+  <li>Table names should be written with lowercase (ie: <span
+ style="font-style: italic;">member</span> is correct, <span
+ style="font-style: italic;">MEMBER</span> is not).</li>
+  <li>Field names should be written with uppercase (ie: <span
+ style="font-style: italic;">ID</span> is correct, <span
+ style="font-style: italic;">id</span> is not).</li>
+  <li>Primary key of the table should be named <span
+ style="font-style: italic;">id</span>.</li>
+  <li>When using INSERT instruction, the field names should be always
+mentionned allowing thus table changes without rewriting needs. Ex:
+INSERT INTO toto <span style="font-weight: bold;">(id,name)</span>
+VALUES ('1','test')<br>
+  </li>
+</ul>
+<h3><u>XHTML rules</u></h3>
+<ul>
+  <li>XHTML should be XHTML 1.0 strict with the following header :</li>
+</ul>
+<div style="margin-left: 80px;">&lt;?xml version="1.0"
+encoding="iso-8859-1"?&gt;<br>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;<br>
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+lang="en"&gt;</div>
+<ul>
+  <li>Empty attributs, in XHTML, should be written by setting them
+equals to themselves (ex : selected="selected")</li>
+</ul>
+<h3><u>DHTML rules</u></h3>
+<ul>
+  <li>Using DHTML capabilites should be restricted such that browsers
+incompabilities should not block the use of OF.<br>
+  </li>
+</ul>
+<h3><u>class rules</u></h3>
+<ul>
+  <li>Every class should be save in an appropriate directory :</li>
+  <ul>
+    <li>classes directory, for all classes do not displaying anything</li>
+    <li>displayClasses directory, for all classes dealing with
+displaying something</li>
+  </ul>
+</ul>
+<h3><u>Database description rules</u></h3>
+<ul>
+  <li>Database description named <a
+ href="../final%20developper%20documents/Database_description.html">Database_description.html</a>
+should be created with the <a
+ href="http://127.0.0.1/mysql/db_datadict.php?lang=en-iso-8859-1&amp;server=1&amp;db=openflyers&amp;goto=db_details_structure.php">data
+dictionary</a> from phpMyAdmin.</li>
+  <li>The comment field should include within brackets and in capital
+letters the key type when existing and attached.<br>
+  </li>
+</ul>
+</body>
+</html>

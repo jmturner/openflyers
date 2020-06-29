@@ -1,0 +1,76 @@
+Guide d'installation version 1.3.0
+
+--------------------------------------------------------------------------------
+PHP versions 4 et 5
+
+LICENSE: GNU GENERAL PUBLIC LICENSE version 2
+
+install_fr.txt author     Christophe LARATTE
+               author     Patrick HUBSCHER
+               copyright  2005 (C) The OpenFlyers Group
+               link       http://openflyers.org/
+--------------------------------------------------------------------------------
+
+********************************************************************************
+Première installation : 
+
+- Pour installer OpenFlyers, décompressez tous les fichiers contenus dans
+l'archive dans le répertoire de votre choix.
+
+- rendez les fichiers connect.php et config.php accessibles en écriture juste
+le temps de l'installation
+
+- Accédez ensuite à l'aide de votre navigateur internet à la page
+install/index.php.
+
+- Si vous avez des alertes à propos des packages PEAR, c'est que ces derniers
+ne sont pas reconnus par OpenFlyers. Cela peut avoir deux origines : 
+
+ *soit votre serveur n'a pas PEAR
+ *soit il a PEAR mais pas les packages requis pour OpenFlyers
+
+Dans le premier cas, vous pouvez résoudre le problème en installant PEAR et les
+packages requis dans un répertoire quelconque. Ensuite, il vous faut modifier
+la valeur de la constante PEAR_DIRECTORY contenue dans le fichier
+conf/config.php pour qu'OpenFlyers sache où trouver les fichiers PEAR.
+Pour connaitre la structure du chemin d'accès, vous pouvez créer un petit
+fichier php contenant : <?php echo dirname($_SERVER['SCRIPT_FILENAME']);?>
+Pour trouver les fichiers PEAR vous avez plusieurs méthodes elles sont décrites
+dans le fichier readme.txt du pack pearPool disponible en téléchargement.
+
+Dans le second cas, vous avez deux possibilités :
+ *soit vous avez un accès shell au serveur et vous pouvez suivre les
+  recommandations contenues dans le fichier readme.txt du pack pearPool
+ *soit vous n'avez pas accès au shell du serveur et dans ce cas le plus simple
+  est de faire comme dans le premier cas.
+
+- Saisissez les informations demandées puis validez.
+
+- Dès lors vous pouvez vous logger en utilisant le couple login/password 
+suivant: admin/admin
+
+- cliquez sur ADMIN dans le menu pour personnaliser le club créé par défaut,
+rajouter les profils et les utilisateurs.
+
+ATTENTION: changez IMMEDIATEMENT le mot de passe associé à l'utilisateur admin! 
+Nous vous conseillons de créer tout de suite un nouvel utilisateur avec le même
+profil et de supprimer l'utilisateur admin créé par défaut afin de sécuriser le
+système. N'oubliez pas également de supprimer les répertoires sql et install
+
+********************************************************************************
+Mise à jour à partir d'une version antérieure :
+
+IMPORTANT : Commencez par faire une copie de secours du contenu de votre base de 
+données. Ceci vous prémunira de toute perte de données en cas d'échec de la mise
+à jour.
+
+Remplacez tous les fichier actuels par ceux contenus dans l'archive. Vous pouvez
+éventuellement conserver vos fichiers présents dans le sous répertoire conf afin
+de ne pas avoir à resaisir les paramètres d'accès à la base de données.
+Accédez ensuite à l'aide de votre navigateur internet à la page
+install/index.php. La base de données sera mise à jour et vos anciennes données
+seront conservées.
+
+En cas de problème, posez vos questions sur les forums: http://openflyers.org
+
+L'équipe OpenFlyers

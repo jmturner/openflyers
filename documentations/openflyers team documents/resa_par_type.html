@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>Database description</title>
+</head>
+<body>
+<div align="center">
+<h1>Reservation par type d'avion (et surbooking)<br>
+</h1>
+$Id: resa_par_type.html,v 1.1 2004/07/01 09:34:15 claratte Exp $ <br>
+Purpose: Reservation par type<br>
+Author: Christophe Laratte<br>
+</div>
+<br>
+<i style="font-weight: bold; text-decoration: underline;"></i><span
+ style="font-weight: bold; text-decoration: underline;">But</span> :<br>
+<br>
+permettre la gestion des r&eacute;servations par type plutot que par
+immatriculation<br>
+<br>
+<span style="font-weight: bold; text-decoration: underline;">Au niveau
+de la base de donn&eacute;es</span> :<br>
+<br>
+Rajout d'une table AIRCRAFT_TYPE qui contient les champs suivants :<br>
+<ul>
+  <li>CLUB_NUM (int(10) unsigned)<br>
+  </li>
+  <li>SHORTNAME (varchar(255))<br>
+  </li>
+  <li>LONGNAME (text)<br>
+  </li>
+  <li>DESCRIPTION (text)</li>
+</ul>
+CLUB_NUM, SHORTNAME d&eacute;finissent la cl&eacute; primaire unique.<br>
+<br>
+SHORTNAME est li&eacute; au champ Type de la table aircrafts.<br>
+<br>
+CLUB_NUM repr&eacute;sente le num&eacute;ro de club (li&eacute;e avec
+la cl&eacute; num de la table clubs).<br>
+<br>
+LONGNAME est le nom en clair du type de l'avion.<br>
+<br>
+DESCRIPTION contient la description avec les particularit&eacute;s de
+l'avion.<br>
+<br>
+Ex : SHORTNAME = 'DR400-120', LONGNAME = 'Robin 2+2 DR400-120',
+DESCRIPTION = '4 places, 120 cv., attention au devis de masse et
+centrage'<br>
+<br>
+De plus, dans la base de donn&eacute;es, le champ ORDER_NUM de la table
+aircrafts doit &ecirc;tre pr&eacute;sent et g&eacute;r&eacute;
+c&ocirc;t&eacute; administration.<br>
+<br>
+Un nouveau bit doit &ecirc;tre cr&eacute;&eacute; dans le champ FLAGS
+de la table clubs pour pr&eacute;ciser si le club effectue des
+r&eacute;servations par type ou non.<br>
+<br>
+Enfin, un nouveau bit doit &ecirc;tre cr&eacute;&eacute; dans le champ
+permits de la table profiles, d&eacute;nomm&eacute; book_callsign_only.
+Un utilisateur qui poss&egrave;de ce droit pourra ainsi forcer la
+r&eacute;servation sur tel ou tel avion (ie : d&eacute;brayer la
+r&eacute;servation par type).<br>
+<br>
+Intitul&eacute; du flag : aircraft_type_booking<br>
+<br>
+<span style="text-decoration: underline; font-weight: bold;">Au niveau
+du cahier de r&eacute;servation :</span><br>
+<br>
+Seule la partie g&eacute;rant effectivement la r&eacute;servation est
+affect&eacute;e. La pr&eacute;sentation du cahier est inchang&eacute;e.<br>
+<br>
+La pr&eacute;sentation du formulaire de r&eacute;servation dispose d'un
+checkbox suppl&eacute;mentaire intitul&eacute; "d&eacute;brayer la
+r&eacute;servation par type" (&agrave; d&eacute;finir plus
+clairement...) qui s'affiche si l'utilisateur connect&eacute; dispose
+de ce droit (cf. book_callsign_only).<br>
+<br>
+Seul le fichier 'record_booking.php' est affect&eacute;.<br>
+<br>
+Il teste le bit aircraft_type_booking. S'il n'est pas mis, il ne change
+rien au comportement actuel de la r&eacute;servation.<br>
+<br>
+S'il est mis :<br>
+<ul>
+  <li>Dans le cas d'une nouvelle r&eacute;servation : avant d'effectuer
+la r&eacute;servation, il cherche le premier avion de m&ecirc;me type
+que celui qui a &eacute;t&eacute; s&eacute;lectionn&eacute; et
+disponible pour le cr&eacute;neau souhait&eacute;. L'ordre est celui
+d&eacute;finit par ORDER_NUM.</li>
+  <li>Dans le cas d'une annulation de r&eacute;servation : il annule
+comme &agrave; l'accoutum&eacute;e la r&eacute;servation pour l'avion
+consid&eacute;r&eacute;, puis regarde sur le cr&eacute;neau
+affect&eacute; par la r&eacute;servation s'il n'y a pas lieu de "faire
+monter" les r&eacute;servations restantes dans le m&ecirc;me type
+d'avion.</li>
+  <li>Dans le cas d'une modification de r&eacute;servation : il
+effectue la modification, puis regarde si, dans le cr&eacute;neau
+affect&eacute; par la modification, il n'y a pas lieu de "faire monter"
+les r&eacute;servations restantes.</li>
+</ul>
+<h1>Surbooking</h1>
+Le surbooking se g&ecirc;re exactement comme pour la r&eacute;servation
+par type.<br>
+<br>
+<span style="text-decoration: underline; font-weight: bold;">Au niveau
+de la base de donn&eacute;es :</span><br>
+<br>
+En plus des modifications n&eacute;cessaires pour la r&eacute;servation
+par type, il n'y a pas d'autre changement, si ce n'est de rajouter un
+nouveau champ dans la table aircrafts intitul&eacute; FLAGS (tinyint(3)
+unsigned) contenant un bit nomm&eacute; 'virtual_aircraft' et
+pr&eacute;cisant, s'il est mis, que l'avion en question n'est pas
+r&eacute;el.<br>
+<br>
+<span style="text-decoration: underline; font-weight: bold;">Au niveau
+du cahier de r&eacute;servation :</span><br>
+<br>
+Affichage diff&eacute;renci&eacute; pour les avions virtuels.<br>
+<br>
+Le reste de la gestion s'op&egrave;re exactement comme pour la
+r&eacute;servation par type.<br>
+<br>
+<span style="text-decoration: underline; font-weight: bold;">Au niveau
+de l'administration :</span><br>
+<br>
+Il faut cr&eacute;&eacute; autant d'avions "virtuels" que l'on souhaite
+pour un m&ecirc;me type d'avion. Cela veut &eacute;galement dire que
+l'on peut coupler r&eacute;servation par type et surbooking. La seule
+qui doit &ecirc;tre faite au niveau du gestionnaire de
+cr&eacute;ation/modification/suppression d'avions : v&eacute;rifier que
+les avions virtuels poss&egrave;dent un ORDER_NUM qui les placent
+apr&egrave;s les avions r&eacute;els de m&ecirc;me type.<br>
+<br>
+S'il on ne souhaite pas coupler surbooking et r&eacute;servation par
+type, il suffit de mettre des types d'avions diff&eacute;rents pour
+chaque avion.<br>
+</body>
+</html>

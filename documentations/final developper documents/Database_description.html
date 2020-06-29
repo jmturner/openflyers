@@ -1,0 +1,2524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr"
+ lang="en">
+<head>
+  <title>phpMyAdmin</title>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1" />
+  <base href="http://127.0.0.1/mysql/" />
+  <script language="JavaScript" type="text/javascript">
+<!--
+    /* added 2004-06-10 by Michael Keck
+     *       we need this for Backwards-Compatibility and resolving problems
+     *       with non DOM browsers, which may have problems with css 2 (like NC 4)
+    */
+    var isDOM      = (typeof(document.getElementsByTagName) != 'undefined'
+                      && typeof(document.createElement) != 'undefined')
+                   ? 1 : 0;
+    var isIE4      = (typeof(document.all) != 'undefined'
+                      && parseInt(navigator.appVersion) >= 4)
+                   ? 1 : 0;
+    var isNS4      = (typeof(document.layers) != 'undefined')
+                   ? 1 : 0;
+    var capable    = (isDOM || isIE4 || isNS4)
+                   ? 1 : 0;
+    // Uggly fix for Opera and Konqueror 2.2 that are half DOM compliant
+    if (capable) {
+        if (typeof(window.opera) != 'undefined') {
+            var browserName = ' ' + navigator.userAgent.toLowerCase();
+            if ((browserName.indexOf('konqueror 7') == 0)) {
+                capable = 0;
+            }
+        } else if (typeof(navigator.userAgent) != 'undefined') {
+            var browserName = ' ' + navigator.userAgent.toLowerCase();
+            if ((browserName.indexOf('konqueror') > 0) && (browserName.indexOf('konqueror/3') == 0)) {
+                capable = 0;
+            }
+        } // end if... else if...
+    } // end if
+    document.writeln('<link rel="stylesheet" type="text/css" href="./css/phpmyadmin.css.php?lang=en-iso-8859-1&amp;js_frame=right&amp;js_isDOM=' + isDOM + '" />');
+//-->
+  </script>
+  <script type="text/javascript" language="javascript">
+    <!--
+    // Updates the title of the frameset if possible (ns4 does not allow this)
+    if (typeof(parent.document) != 'undefined' && typeof(parent.document) != 'unknown'
+        && typeof(parent.document.title) == 'string') {
+        parent.document.title = '127.0.0.1 >> localhost >> openflyers | phpMyAdmin 2.6.0-pl1';
+    }
+    
+    //-->
+    </script>
+  <meta name="OBGZip" content="true" />
+</head>
+<noscript> <link rel="stylesheet" type="text/css"
+href="./css/phpmyadmin.css.php?lang=en-iso-8859-1&amp;js_frame=right"
+/>
+</noscript>
+<body bgcolor="#f5f5f5">
+<table border="0" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="serverinfo">Server:&nbsp;<a
+ href="main.php?lang=en-iso-8859-1&amp;server=1"><img
+ src="./themes/original/img/s_host.png" alt="localhost" border="0"
+ height="16" width="16" />localhost</a>
+      </td>
+      <td class="serverinfo">
+      <div></div>
+      </td>
+      <td class="serverinfo">Database:&nbsp;<a
+ href="db_details_structure.php?lang=en-iso-8859-1&amp;server=1&amp;db=openflyers"><img
+ src="./themes/original/img/s_db.png" alt="openflyers" border="0"
+ height="16" width="16" />openflyers</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div>
+<h2>aircraft_qualif</h2>
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> AIRCRAFTNUM&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">aircrafts -&gt; NUM&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> CHECKNUM&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">unique for each AIRCRAFTNUM. Used to count all
+QUALIFID need for 1 AIRCRAFTNUM&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> QUALIFID&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">qualification -&gt; ID&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>aircrafts</h2>
+Table comments&nbsp;:&nbsp;ALL AIRCRAFTS OF ALL AIRCLUBS<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>NUM</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">auto_increment&nbsp;</td>-->
+      <td class="print">&nbsp;</td>
+      <td class="print">Aircraft ID (PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> CALLSIGN&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Aircraft Callsign (UNIQUE)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> TYPE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Aircraft Type&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+FLIGHT_HOUR_COSTS&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Aircraft flight hour cost&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+SEATS_AVAILABLE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Number of seats in the aircraft&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> COMMENTS&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Comments on the aircraft&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> ORDER_NUM&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Used to sort all aircrafts (UNIQUE)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>non_bookable</td>
+      <td>tinyint</td>
+      <td>No</td>
+      <td></td>
+      <td></td>
+      <td>Set to 1 if this aircraft should not be used for booking</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>authentication</h2>
+Table comments&nbsp;:&nbsp;used for authentication<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> NAME&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Login (UNIQUE)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> PASSWORD&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Password&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>NUM</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">auto_increment&nbsp;</td>-->
+      <td class="print">&nbsp;</td>
+      <td class="print">Person number (intern to this software)
+(PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> FIRST_NAME&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Firstname&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> LAST_NAME&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Lastname&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> PROFILE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">mediumint(8) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">profiles -&gt; NUM&nbsp;</td>
+      <td class="print">binary OR combination of profiles-&gt;NUM&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> VIEW_TYPE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">See bytes description into
+database_comments.html&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> VIEW_WIDTH&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">width choosed by user for book display&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> VIEW_HEIGHT&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(4) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">height choosed by user for book display&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+AIRCRAFTS_VIEWED&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">serialization of non-viewed aircrafts. If
+empty, all aircrafts are viewed. NUM are separated by *. There must be
+a * as first char.&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> INST_VIEWED&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">serialization of non-viewed instructors. If
+empty, all instructors are viewed. NUM are separated by *. There must
+be a * as first char.&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> EMAIL&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Valid email address&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> TIMEZONE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">timezone label according the
+PEAR::Date_TimeZone class definitions in the array
+$_DATE_TIMEZONE_DATA&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> ADDRESS&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">street, several lines accepted&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> ZIPCODE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">zipcode&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> CITY&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">city&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> STATE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">state or province&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> COUNTRY&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">country&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> HOME_PHONE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">home phone number&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> WORK_PHONE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">work phone number&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> CELL_PHONE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">mobile phone number&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> LANG&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">choosen LANG (name of a file in lang/
+directory)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> NOTIFICATION&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">see Database_comments.html&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>booking</h2>
+Table comments&nbsp;:&nbsp;RECORDS ALL THE SLOTS OF ALL AIRCRAFTS OF
+ALL AIRCLUBS<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>ID</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">auto_increment&nbsp;</td>-->
+      <td class="print">&nbsp;</td>
+      <td class="print">booking Ident (PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> START_DATE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">datetime<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0000-00-00
+00:00:00&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">begin of the book in GMT&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> END_DATE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">datetime<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0000-00-00
+00:00:00&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">end of the book in GMT&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> AIRCRAFT_NUM&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">aircrafts -&gt; NUM&nbsp;</td>
+      <td class="print">NUM of aircraft booked&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> MEMBER_NUM&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">members -&gt; NUM&nbsp;</td>
+      <td class="print">NUM of member concerned&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> SLOT_TYPE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">type of the slot according the table
+description in database_comments.html&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> INST_NUM&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">instructors -&gt; INST_NUM&nbsp;</td>
+      <td class="print">NUM of the instructor or 0&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> FREE_SEATS&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Number of seats staying free if the pilot allow
+extra people&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> COMMENTS&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Comments or ''&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>clubs</h2>
+Table comments&nbsp;:&nbsp;DESCRIPTION OF ALL AIRCLUBS<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>NUM</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">auto_increment&nbsp;</td>-->
+      <td class="print">&nbsp;</td>
+      <td class="print">(PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> NAME&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> INFO_CELL&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">text<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> LOGO&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">longblob<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> LOGO_NAME&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> LOGO_EXT&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(25)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> LOGO_SIZE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(11)<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+STYLESHEET_URL&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+FIRST_HOUR_DISPLAYED&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">time<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">00:00:00&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">First hour (GMT) displayed in the booking
+screen.&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+LAST_HOUR_DISPLAYED&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">time<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">00:00:00&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Last hour (GMT) displayed in the booking
+screen.&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+USUAL_PROFILES&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">mediumint(8) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">default profile for new user&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> ICAO&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(6)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">icao -&gt; ICAO&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> FLAGS&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">see database_comments.html&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+DEFAULT_SLOT_RANGE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">default slot range in booking form (in
+minutes). Should be x*15.&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+MIN_SLOT_RANGE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">minimum slot range (in minutes). Should be
+x*15.&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+TWILIGHT_RANGE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">twilight range (in minutes). Should be
+x*15.&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+MAILING_LIST_NAME&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">if empty no mailing-list&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+MAILING_LIST_TYPE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">type used to overlay the mailing_list
+class&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> CLUB_SITE_URL&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">internet url of the club site.&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+DEFAULT_TIMEZONE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">default timezone that should automatically be
+set for each authentication creation to the timezone field&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> LANG&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">default lang set for new users&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> ADMIN_NUM&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">authentication -&gt; NUM&nbsp;</td>
+      <td class="print">authentication ID of the administrator of
+OpenFlyers&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+MAIL_FROM_ADDRESS&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">email address used in FROM field for automatic
+send mail&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>exceptionnal_inst_dates</h2>
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> INST_NUM&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">instructors -&gt; INST_NUM&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> START_DATE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">datetime<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0000-00-00
+00:00:00&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> END_DATE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">datetime<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0000-00-00
+00:00:00&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> PRESENCE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">1 = true, 0 = false&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>icao</h2>
+Table comments&nbsp;:&nbsp;airfields coord<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> NAME&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Full airfield name&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>ICAO</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(6)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">4 letters icao airfield label or 6 letters for
+private ones (PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> LAT&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(7)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">latitude, format : NDDMMSS&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> LON&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(8)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">longitude, format : EDDDMMSS&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> ALT&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">smallint(6)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Altitude in feet&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>instructors</h2>
+Table comments&nbsp;:&nbsp;LIST INSTRUCTORS AND THEIR AUTORIZATIONS<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>INST_NUM</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">authentication -&gt; NUM&nbsp;</td>
+      <td class="print">(PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> SIGN&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">3 letters sign&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> TYPES_INST&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">text<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">serializing of aircrafts type on which
+instructors use to learn&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> FE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">1=yes&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> IR&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">1=yes&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> AEROBATIC&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">1=yes&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> NIGHT_FLIGHT&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">1=yes&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> ORDER_NUM&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Used to sort all instructors (UNIQUE)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>ip_stopped</h2>
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>IP_NUM</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">(PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> COUNTER&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> EXPIRE_DATE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">datetime<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0000-00-00
+00:00:00&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>login_stopped</h2>
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>LOGIN</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">(PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> COUNTER&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> EXPIRE_DATE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">datetime<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0000-00-00
+00:00:00&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>logs</h2>
+Table comments&nbsp;:&nbsp;TRACE EVERY ACTION PERFORMED ON THE BASE<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> DATE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">datetime<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0000-00-00
+00:00:00&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">log date&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> USER&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">authentication -&gt; NUM&nbsp;</td>
+      <td class="print">user performing the action&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> MESSAGE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">text<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">message / action logged&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>member_qualif</h2>
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>MEMBERNUM</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">members -&gt; NUM&nbsp;</td>
+      <td class="print">(PRIMARY KEY WITH QUALIFID)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>QUALIFID</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">qualification -&gt; ID&nbsp;</td>
+      <td class="print">(PRIMARY KEY WITH MEMBERNUM)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> EXPIREDATE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">date<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0000-00-00&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">if qualif.TIME_LIMITATION field of
+qualification table (according the QUALIFID) is set to 1, this field
+contains the expiration date for the MEMBERNUM member.&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> NOALERT&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Say if we have to show warning or not in cas of
+expiration (according to the QUALIF_ALERT_DELAY of member table.&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>members</h2>
+Table comments&nbsp;:&nbsp;ALL MEMBERS OF ALL AIRCLUBS<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>NUM</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">authentication -&gt; NUM&nbsp;</td>
+      <td class="print">(PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> MEMBER_NUM&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">airclub internal number&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> SUBSCRIPTION&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">date<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">2003-12-31&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">subscription end date validity&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+QUALIF_ALERT_DELAY&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">8&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Alert delay before qualif expirations (in
+weeks)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>parameter</h2>
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>CODE</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Name of the parameter (PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> ENABLED&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">boolean activating or not the parameter&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> INT_VALUE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">optional value according to the CODE&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> CHAR_VALUE&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">optional value according to the CODE&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>pma_bookmark</h2>
+Table comments&nbsp;:&nbsp;Bookmarks<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>id</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(11)<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">auto_increment&nbsp;</td>-->
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> dbase&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> user&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> label&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> query&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">text<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>pma_column_info</h2>
+Table comments&nbsp;:&nbsp;Column information for phpMyAdmin<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>id</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(5) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">auto_increment&nbsp;</td>-->
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> db_name&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> table_name&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> column_name&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> comment&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> mimetype&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+transformation&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+transformation_options&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>pma_history</h2>
+Table comments&nbsp;:&nbsp;SQL history for phpMyAdmin<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>id</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">bigint(20) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">auto_increment&nbsp;</td>-->
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> username&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> db&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> table&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> timevalue&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">timestamp(14)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">Yes&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70"><i>NULL</i>&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> sqlquery&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">text<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>pma_pdf_pages</h2>
+Table comments&nbsp;:&nbsp;PDF relation pages for phpMyAdmin<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> db_name&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>page_nr</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">auto_increment&nbsp;</td>-->
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> page_descr&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(50)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>pma_relation</h2>
+Table comments&nbsp;:&nbsp;Relation table<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>master_db</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>master_table</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>master_field</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> foreign_db&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> foreign_table&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> foreign_field&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>pma_table_coords</h2>
+Table comments&nbsp;:&nbsp;Table coordinates for phpMyAdmin PDF output<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>db_name</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>table_name</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>pdf_page_number</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">int(11)<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> x&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">float <bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> y&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">float <bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>pma_table_info</h2>
+Table comments&nbsp;:&nbsp;Table information for phpMyAdmin<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>db_name</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>table_name</u>&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> display_field&nbsp;
+      </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(64)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>profiles</h2>
+Table comments&nbsp;:&nbsp;WARNING : EACH NUM IS SET AS 2^X IN ORDER TO
+COMBINE THEM<br />
+<br />
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>NUM</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">mediumint(8) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">WARNING : each num is set as 2^x in order to
+combine TO COMBINE THEM (PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> NAME&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Name of the profile&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> PERMITS&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">smallint(5) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">See database_description.html&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>qualification</h2>
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> <u>ID</u>&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">(PRIMARY KEY)&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> NAME&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">varchar(255)<bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Name of the qualification&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50">
+TIME_LIMITATION&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">Flag : if set to 1 (0 otherwise) it means that
+the qualification has an expiration date&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="page-break-before: always;">
+<h2>regular_presence_inst_dates</h2>
+<!-- TABLE INFORMATIONS -->
+<table
+ style="border: 1px solid black; border-collapse: collapse; background-color: white;"
+ width="100%">
+  <tbody>
+    <tr>
+      <th width="50">Field</th>
+      <th width="80">Type</th>
+<!--<th width="50">Attributes</th>--> <th width="40">Null</th>
+      <th width="70">Default</th>
+<!--<th width="50">Extra</th>--> <th>Links to</th>
+      <th>Comments</th>
+      <th>MIME</th>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> INST_NUM&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">int(10) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">instructors -&gt; INST_NUM&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> START_DAY&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">0-&gt;Sunday, 1-&gt;Monday, ..,
+6-&gt;Saturday&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> END_DAY&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">tinyint(3) <bdo
+ dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">UNSIGNED</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">0&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">0-&gt;Sunday, 1-&gt;Monday, ..,
+6-&gt;Saturday&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> START_HOUR&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">time<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">00:00:00&nbsp;</td>
+<!--<td width="50" bgcolor="#E5E5E5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="print" nowrap="nowrap" width="50"> END_HOUR&nbsp; </td>
+      <td class="print" nowrap="nowrap" width="80">time<bdo dir="ltr" /></td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print" width="40">No&nbsp;</td>
+      <td class="print" nowrap="nowrap" width="70">00:00:00&nbsp;</td>
+<!--<td width="50" bgcolor="#D5D5D5" nowrap="nowrap">&nbsp;</td>--> <td
+ class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+      <td class="print">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<script type="text/javascript" language="javascript1.2">
+<!--
+function printPage()
+{
+    document.getElementById('print').style.visibility = 'hidden';
+    // Do print the page
+    if (typeof(window.print) != 'undefined') {
+        window.print();
+    }
+    document.getElementById('print').style.visibility = '';
+}
+//-->
+</script>
+<br />
+<br />
+&nbsp;<input style="width: 100px; height: 25px;" id="print"
+ value="Print" onclick="printPage()" type="button" />
+<script type="text/javascript">
+<!--
+    var dbBoxSetupDone = false;
+    function dbBoxSetup() {
+        if (dbBoxSetupDone != true) {
+            if (parent.frames.queryframe && parent.frames.queryframe.document.left && parent.frames.queryframe.document.left.lightm_db) {
+                parent.frames.queryframe.document.left.lightm_db.value = 'openflyers';
+                dbBoxSetupDone = true;
+            } else {
+                setTimeout("dbBoxSetup();",500);
+            }
+        }		
+    }
+    if (parent.frames.queryframe && parent.frames.queryframe.document && parent.frames.queryframe.document.queryframeform) {
+        parent.frames.queryframe.document.queryframeform.db.value = "openflyers";
+        parent.frames.queryframe.document.queryframeform.table.value = "regular_presence_inst_dates";
+    }
+    if (parent.frames.queryframe && parent.frames.queryframe.document && parent.frames.queryframe.document.left && parent.frames.queryframe.document.left.lightm_db) {
+        selidx = parent.frames.queryframe.document.left.lightm_db.selectedIndex;
+        if (parent.frames.queryframe.document.left.lightm_db.options[selidx].value == "openflyers") {
+            parent.frames.queryframe.document.left.lightm_db.options[selidx].text = "openflyers (24)";
+        } else {
+            parent.frames.queryframe.location.reload();
+            setTimeout("dbBoxSetup();",2000);
+        }
+    }
+    
+    function reload_querywindow () {
+        if (parent.frames.queryframe && parent.frames.queryframe.querywindow && !parent.frames.queryframe.querywindow.closed && parent.frames.queryframe.querywindow.location) {
+                        if (!parent.frames.queryframe.querywindow.document.sqlform.LockFromUpdate || !parent.frames.queryframe.querywindow.document.sqlform.LockFromUpdate.checked) {
+                parent.frames.queryframe.querywindow.document.querywindow.db.value = "openflyers";
+                parent.frames.queryframe.querywindow.document.querywindow.query_history_latest_db.value = "openflyers";
+                parent.frames.queryframe.querywindow.document.querywindow.table.value = "regular_presence_inst_dates";
+                parent.frames.queryframe.querywindow.document.querywindow.query_history_latest_table.value = "regular_presence_inst_dates";
+
+                // no sql query update
+
+                parent.frames.queryframe.querywindow.document.querywindow.submit();
+            }
+                    }
+    }
+
+    function focus_querywindow(sql_query) {
+        if (parent.frames.queryframe && parent.frames.queryframe.querywindow && !parent.frames.queryframe.querywindow.closed && parent.frames.queryframe.querywindow.location) {
+            if (parent.frames.queryframe.querywindow.document.querywindow.querydisplay_tab != 'sql') {
+                parent.frames.queryframe.querywindow.document.querywindow.querydisplay_tab.value = "sql";
+                parent.frames.queryframe.querywindow.document.querywindow.query_history_latest.value = sql_query;
+                parent.frames.queryframe.querywindow.document.querywindow.submit();
+                parent.frames.queryframe.querywindow.focus();
+            } else {
+                parent.frames.queryframe.querywindow.focus();
+            }
+
+            return false;
+        } else if (parent.frames.queryframe) {
+            new_win_url = 'querywindow.php?sql_query=' + sql_query + '&lang=en-iso-8859-1&server=1&db=openflyers&table=regular_presence_inst_dates';
+            parent.frames.queryframe.querywindow=window.open(new_win_url, '','toolbar=0,location=0,directories=0,status=1,menubar=0,scrollbars=yes,resizable=yes,width=550,height=310');
+
+            if (!parent.frames.queryframe.querywindow.opener) {
+               parent.frames.queryframe.querywindow.opener = parent.frames.queryframe;
+            }
+
+            // reload_querywindow();
+            return false;
+        }
+    }
+
+    reload_querywindow();
+
+//-->
+</script>
+</body>
+</html>

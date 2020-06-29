@@ -1,0 +1,408 @@
+/* Always enabled stylesheets (right frame) */
+body {
+    font-family: arial, helvetica, geneva, sans-serif;
+    font-size: small;
+    color: #000000;
+        background-image: url(../themes/original/img/vertical_line.png);
+    background-repeat: repeat-y;
+    background-color: #F5F5F5
+}
+
+pre, tt         {font-size: small}
+th              {font-family: arial, helvetica, geneva, sans-serif; font-size: small; font-weight: bold; color: #000000; background-color: #D3DCE3}
+td              {font-family: arial, helvetica, geneva, sans-serif; font-size: small}
+form            {font-family: arial, helvetica, geneva, sans-serif; font-size: small; padding: 0px; margin: 0px;}
+input           {font-family: arial, helvetica, geneva, sans-serif; font-size: small}
+input.textfield {font-family: arial, helvetica, geneva, sans-serif; font-size: small; color: #000000; background-color: #FFFFFF}
+select          {font-family: arial, helvetica, geneva, sans-serif; font-size: small; color: #000000; background-color: #FFFFFF}
+textarea        {font-family: arial, helvetica, geneva, sans-serif; font-size: small; color: #000000; background-color: #FFFFFF}
+h1              {font-family: arial, helvetica, geneva, sans-serif; font-size: large; font-weight: bold}
+h2              {font-family: arial, helvetica, geneva, sans-serif; font-size: medium; font-weight: bold}
+h3              {font-family: arial, helvetica, geneva, sans-serif; font-size: small; font-weight: bold}
+a:link          {font-family: arial, helvetica, geneva, sans-serif; font-size: small; text-decoration: none; color: #0000FF}
+a:visited       {font-family: arial, helvetica, geneva, sans-serif; font-size: small; text-decoration: none; color: #0000FF}
+a:hover         {font-family: arial, helvetica, geneva, sans-serif; font-size: small; text-decoration: underline; color: #FF0000}
+a.nav:link      {font-family: arial, helvetica, geneva, sans-serif; color: #000000}
+a.nav:visited   {font-family: arial, helvetica, geneva, sans-serif; color: #000000}
+a.nav:hover     {font-family: arial, helvetica, geneva, sans-serif; color: #FF0000}
+a.h1:link       {font-family: arial, helvetica, geneva, sans-serif; font-size: large; font-weight: bold; color: #000000}
+a.h1:active     {font-family: arial, helvetica, geneva, sans-serif; font-size: large; font-weight: bold; color: #000000}
+a.h1:visited    {font-family: arial, helvetica, geneva, sans-serif; font-size: large; font-weight: bold; color: #000000}
+a.h1:hover      {font-family: arial, helvetica, geneva, sans-serif; font-size: large; font-weight: bold; color: #FF0000}
+a.h2:link       {font-family: arial, helvetica, geneva, sans-serif; font-size: medium; font-weight: bold; color: #000000}
+a.h2:active     {font-family: arial, helvetica, geneva, sans-serif; font-size: medium; font-weight: bold; color: #000000}
+a.h2:visited    {font-family: arial, helvetica, geneva, sans-serif; font-size: medium; font-weight: bold; color: #000000}
+a.h2:hover      {font-family: arial, helvetica, geneva, sans-serif; font-size: medium; font-weight: bold; color: #FF0000}
+a.drop:link     {font-family: arial, helvetica, geneva, sans-serif; color: #ff0000}
+a.drop:visited  {font-family: arial, helvetica, geneva, sans-serif; color: #ff0000}
+a.drop:hover    {font-family: arial, helvetica, geneva, sans-serif; color: #ffffff; background-color:#ff0000; text-decoration: none}
+dfn             {font-style: normal}
+dfn:hover       {font-style: normal; cursor: help}
+.nav            {font-family: arial, helvetica, geneva, sans-serif; color: #000000}
+.warning        {font-family: arial, helvetica, geneva, sans-serif; font-size: small; font-weight: bold; color: #FF0000}
+.tblcomment     {font-family: arial, helvetica, geneva, sans-serif; font-size: x-small; font-weight: normal; color: #000099; }
+td.topline      {font-size: 1px}
+td.tab          {
+    border-top: 1px solid #999;
+    border-right: 1px solid #666;
+    border-left: 1px solid #999;
+    border-bottom: none;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+}
+
+div.tabs        {
+    clear: both;
+}
+
+table.tabs      {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #666;
+}
+
+fieldset        {
+    border:     #686868 solid 1px;
+    padding:    0.5em;
+}
+fieldset fieldset {
+    margin:     0.8em;
+}
+
+button.mult_submit {
+    border: none;
+    background-color: transparent;
+}
+
+.pdflayout {
+    overflow:         hidden;
+    clip:             inherit;
+    background-color: #FFFFFF;
+    display:          none;
+    border:           1px solid #000000;
+    position:         relative;
+}
+
+.pdflayout_table {
+    background:       #D3DCE3;
+    color:            #000000;
+    overflow:         hidden;
+    clip:             inherit;
+    z-index:          2;
+    display:          inline;
+    visibility:       inherit;
+    cursor:           move;
+    position:         absolute;
+    font-size:        x-small;
+    border:           1px dashed #000000;
+}
+
+.print{font-family:arial;font-size:8pt;}
+
+/* MySQL Parser */
+.syntax {font-family: sans-serif; font-size: x-small;}
+.syntax_comment            { padding-left: 4pt; padding-right: 4pt;}
+.syntax_digit              {}
+.syntax_digit_hex          {}
+.syntax_digit_integer      {}
+.syntax_digit_float        {}
+.syntax_punct              {}
+.syntax_alpha              {}
+.syntax_alpha_columnType   {text-transform: uppercase;}
+.syntax_alpha_columnAttrib {text-transform: uppercase;}
+.syntax_alpha_reservedWord {text-transform: uppercase; font-weight: bold;}
+.syntax_alpha_functionName {text-transform: uppercase;}
+.syntax_alpha_identifier   {}
+.syntax_alpha_charset      {}
+.syntax_alpha_variable     {}
+.syntax_quote              {white-space: pre;}
+.syntax_quote_backtick     {}
+
+hr{ color: #666666; background-color: #666666; border: 0; height: 1px; }
+
+/* new styles for navigation */
+
+.nav {
+    font-family: arial, helvetica, geneva, sans-serif;
+    color: #000000;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #666;
+}
+.navSpacer {
+    width:            5px;
+    height:           16px;
+}
+.navNormal, .navDrop, .navActive {
+    font-family:      arial, helvetica, geneva, sans-serif;
+    font-size:        small;
+    font-weight:      bold;
+    border-top: 1px solid #999;
+    border-right: 1px solid #666;
+    border-left: 1px solid #999;
+    border-bottom: none;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    padding: 2px 5px 2px 5px;
+}
+.navNormal {
+    color:            #000000;
+    background-color: #E5E5E5;
+}
+.navActive{
+    font-family:      arial, helvetica, geneva, sans-serif;
+    font-size:        small;
+    font-weight:      bold;
+    color:            #000000;
+    background-color: #CCCCCC;
+}
+.navDrop{
+    color: #000000;
+    background-color: #E5E5E5;
+}
+.navNormal a:link, .navNormal a:active, .navNormal a:visited, .navActive a:link, .navActive a:active, .navActive a:visited{
+    color: #0000FF;
+}
+
+.navDrop a:link, .navDrop a:active, .navDrop a:visited{
+    color: #FF0000;
+}
+.navDrop a:hover{
+    color: #FFFFFF;
+    background-color: #FF0000;
+}
+.navNormal a:hover, .navActive a:hover{
+    color: #FF0000;
+}
+
+/* Warning showing div with right border and optional icon */
+
+div.errorhead {
+    font-weight: bold;
+    color: #ffffff;
+    text-align: left;
+        background-image: url(../themes/original/img/s_error.png);
+    background-repeat: no-repeat;
+    background-position: 5px 50%;
+    padding: 0px 0px 0px 25px;
+        margin: 0px;
+}
+
+/* tables */
+.tblError {
+    border: 1px solid #FF0000;
+    background-color: #FFFFCC;
+}
+.tblWarn, div.tblWarn {
+    border: 1px solid #FF0000;
+    background-color: #FFFFFF;
+}
+div.tblWarn {
+    padding: 5px 5px 5px 5px;
+    margin:  0px 0px 5px 0px;
+    width:   100%;
+}
+.tblHeaders {
+    background-color: #D0DCE0;
+    font-weight: bold;
+    color: #000000;
+}
+.tblFooters {
+    background-color: #D0DCE0;
+    font-weight: normal;
+    color: #000000;
+}
+.tblHeaders a:link, .tblHeaders a:active, .tblHeaders a:visited, .tblFooters a:link, .tblFooters a:active, .tblFooters a:visited {
+    color: #0000FF;
+}
+.tblHeaders a:hover, .tblFooters a:hover { color: #FF0000; }
+.tblHeadError {
+    background-color: #FF0000;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+.tblHeadWarn {
+    background-color: #FFCC00;
+    font-weight: bold;
+    color: #000000;
+}
+/* forbidden, no privilegs */
+.noPrivileges{
+    color: #FF0000;
+    font-weight: bold;
+}
+
+/* Heading */
+
+.serverinfo {
+    font-family: arial, helvetica, geneva, sans-serif;
+    font-size: small;
+    font-weight: normal;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: 0px 0px 10px 0px;
+}
+
+img, input, select, button {
+    vertical-align: middle;
+}
+
+.serverinfo a:link, .serverinfo a:active, .serverinfo a:visited {
+    font-family: arial, helvetica, geneva, sans-serif;
+    font-size: small;
+    font-weight: bolder;
+}
+.serverinfo a img{
+    vertical-align: middle;
+    margin: 0px 1px 0px 2px;
+}
+.serverinfo div{
+    background-image:    url(../themes/original/img/item_ltr.png);
+    background-repeat:   no-repeat;
+    background-position: 50% 50%;
+    width: 20px;
+    height: 16px;
+}
+#textSQLDUMP {
+    width: 95%;
+    height: 95%;
+    font-family: "Courier New", Courier, mono;
+    font-size:   12px;
+}
+.syntax_comment {color: #808000;}
+.syntax_comment_mysql {}
+.syntax_comment_ansi {}
+.syntax_comment_c {}
+.syntax_digit {}
+.syntax_digit_hex {color: teal;}
+.syntax_digit_integer {color: teal;}
+.syntax_digit_float {color: aqua;}
+.syntax_punct {color: fuchsia;}
+.syntax_alpha {}
+.syntax_alpha_columnType {color: #FF9900;}
+.syntax_alpha_columnAttrib {color: #0000FF;}
+.syntax_alpha_reservedWord {color: #990099;}
+.syntax_alpha_functionName {color: #FF0000;}
+.syntax_alpha_identifier {color: black;}
+.syntax_alpha_charset {color: #6495ed;}
+.syntax_alpha_variable {color: #800000;}
+.syntax_quote {color: #008000;}
+.syntax_quote_double {}
+.syntax_quote_single {}
+.syntax_quote_backtick {}
+.syntax_indent0 {margin-left: 0em;}
+.syntax_indent1 {margin-left: 1em;}
+.syntax_indent2 {margin-left: 2em;}
+.syntax_indent3 {margin-left: 3em;}
+.syntax_indent4 {margin-left: 4em;}
+.syntax_indent5 {margin-left: 5em;}
+.syntax_indent6 {margin-left: 6em;}
+.syntax_indent7 {margin-left: 7em;}
+
+/* Calendar */
+table.calendar {
+    width: 100%;
+}
+
+table.calendar td {
+    text-align: center;
+}
+
+table.calendar td a {
+    display: block;
+}
+
+table.calendar td a:hover {
+    background-color: #CCFFCC;
+}
+
+table.calendar th {
+    background-color: #D3DCE3;
+}
+
+table.calendar td.selected {
+    background-color: #FFCC99;
+}
+
+img.calendar {
+    border: none;
+}
+
+form.clock {
+    text-align: center;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+div.nowrap {
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    padding-bottom: 1em;
+}
+
+li form {
+    display: inline;
+}
+
+ul.main {
+    margin: 0px;
+    padding-left:2em;
+    padding-right:2em;
+}
+
+/* no longer needed
+ul.main li {
+    list-style-image: url(../images/dot_violet.png);
+    padding-bottom: 0.1em;
+}
+*/
+
+button {
+    /* buttons in some browsers (eg. Konqueror) are block elements, this breaks design */
+    display: inline;
+}
+
+/* Tabs */
+
+/* For both light and non light */
+.tab {
+    white-space: nowrap;
+    font-weight: bolder;
+}
+
+/* For non light */
+td.tab {
+    width: 64px;
+    text-align: center;
+    background-color: #dfdfdf;
+}
+
+td.tab a {
+    display: block;
+}
+
+/* For light */
+div.tab { }
+
+/* Highlight active tab */
+td.activetab {
+    background-color: silver;
+}
+
+/* Textarea */
+
+textarea {
+    overflow: auto;
+}
+
+.nospace {
+    margin: 0px;
+    padding: 0px;
+}

@@ -1,0 +1,250 @@
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * stylesheet.css
+ *
+ * Cascading stylesheet for user interface
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program (file license.txt);
+ * if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * 
+ * @category   Cascading stylesheet
+ * @author     Christophe LARATTE <christophe.laratte@openflyers.org>
+ * @copyright  2003-2005 The OpenFlyers Group <devteam@openflyers.org>
+ * @license    http://www.gnu.org/licenses/gpl.html  GNU-GPL License
+ * @version    $Id: stylesheet.css,v 1.58.2.3 2005/10/28 17:44:05 claratte Exp $
+ * @link       http://openflyers.org
+ * @since      Fri Dec 13 2002
+ */
+
+/* one letter class used : b,d,l,m,n,o,p,q,t */
+
+/* default */
+body {background-color:rgb(220,228,240);font-family:Arial,sans-serif;text-align:center;}
+a {font-family:Arial,sans-serif;color:black;text-decoration:none;}
+ul {text-align:justify;}
+/* do not use "margin:auto" with global table definition because it changes popup position */
+table {padding:0px;font-family: Arial,sans-serif;text-align:center; border-collapse: collapse;}
+img {border: 0px;}
+form {margin:0px;}
+
+/*** generics ***/
+
+.lfloat {float:left;}
+.rfloat {float:right;}
+.spacer {clear:both; padding:1px;}
+.lightSpacer {clear:both; padding:1px; border:0; margin:0; visibility:hidden;font-size:1px;}
+.center {text-align:center;}
+
+/***** online help ****/
+a.helpButton {float:right;border: 1px solid #A0B0C0;padding:0.2em;margin:0.2em;white-space:nowrap;}
+a.helpButton:hover {border: 1px solid #607080;}
+
+/***** ofLogo ****/
+div.ofLogo {position:absolute;left:1em;}
+div.ofLogo h1 {font-size:0.8em;font-weight:normal;text-align:center;margin:0;}
+
+/***** clubLogo ****/
+div.clubLogo {font-size:1.5em;}
+
+/*** annotation ***/
+.annotation {font-size:0.6em;text-align:center;}
+.annotation a {text-decoration:underline;}
+
+/************************ forms ********************/
+
+/* standard form */
+div.centeredForm {clear:both;padding:1em;margin:1em auto;border:1px solid rgb(160,176,192);width:50%;background-color:rgb(204,212,224);min-width:30em;}
+span.label {float:left;text-align:right;width:40%;margin:0px;font-size:1em;}
+span.formw {float:right;text-align:left;width:55%;margin:0px;}
+div.centeredForm div {clear:both;padding:1em;}
+div.centeredForm h1 {font-size:1em;font-weight:normal;margin:1em;}
+span.formw input {width:9em;}
+
+/* book form */
+div.centeredFormBook {clear:both;margin:1em auto;border:1px solid rgb(160,176,192);width:52%;background-color:rgb(204,212,224);min-width:30em;}
+span.labelBook {float:left;text-align:right;width:30%;margin:0px;font-size:1em;}
+span.formwBook {float:right;text-align:left;width:65%;margin:0px;}
+div.centeredFormBook div {clear:both;padding:0.5em;}
+div.centeredFormBook h1 {font-size:1em;font-weight:normal;margin:1em;}
+span.formwBook input {width:9em;}
+
+/* large form */
+div.centeredFormLarge {clear:both;padding:1em;margin:1em auto;padding-right:1em;border:1px solid rgb(160,176,192);width:90%;background-color:rgb(204,212,224);min-width:30em;}
+span.labelLarge {float:left;text-align:right;width:40%;margin:0px;font-size:1em;}
+span.formwLarge {float:right;text-align:left;width:55%;margin:0px;}
+div.centeredFormLarge div {clear:both;padding:1em;}
+div.centeredFormLarge h1 {font-size:1em;font-weight:normal;margin:1em;}
+div.centeredFormLarge a {text-decoration:underline;}
+div.centeredFormLarge ul {font-size:0.9em;}
+div.centeredFormLarge li {margin-bottom:0.5em;margin-top:0.5em;list-style-type:none;}
+
+/* simple form */
+div.centeredFormSimple {clear:both;margin:1em auto;}
+span.labelSimple {float:left;text-align:right;width:40%;margin:0px;font-size:1em;}
+span.formwSimple {float:right;text-align:left;width:55%;margin:0px;}
+div.centeredFormSimple div {clear:both;padding:1em;}
+div.centeredFormSimple h1 {font-size:1em;font-weight:normal;margin:1em;}
+span.formwSimple input {width:9em;}
+
+/* standard form */
+input#validation {width:auto;text-align:center;}
+
+/********************* tables ***********************/
+
+/* standard table (simple list : booking list, member list) */
+table.listing {margin:auto;font-size:0.8em;border:1px solid rgb(160,176,192);background-color:rgb(204,212,224);}
+table.listing thead {font-size:1em;font-weight:bold;background-color:rgb(204,212,224);}
+table.listing tr td {margin:0px;padding:0.2em;border-top:1px solid #607080;}
+table.listing tbody th {text-align:left;font-weight:normal;border-top:1px solid #607080;}
+
+/* books list table */
+th.dateBookTitle {width:38%;}
+th.pilotBookTitle {width:20%;}
+th.aircraftBookTitle {width:12%;}
+th.instBookTitle {width:10%;}
+th.seatsBookTitle {width:10%;}
+th.actionsBookTitle {width:10%;}
+
+/* members list table */
+th.lastNameMemberTitle {width:15%;}
+th.firstNameMemberTitle {width:15%;}
+th.profileMemberTitle {width:15%;}
+th.statusMemberTitle {width:10%;}
+th.emailMemberTitle {width:15%;}
+th.homePhoneMemberTitle {width:10%;}
+th.workPhoneMemberTitle {width:10%;}
+th.cellPhoneMemberTitle {width:10%;}
+
+/********************* BOOKVIEW *********************/
+#fillMarker {font-size: 1px}
+.bookDescriptor {font-size:1.1em;margin-bottom:0.5em;}
+
+table.BOOKVIEW {margin:auto;}
+
+table.BOOKVIEW td {border-left: 1px solid rgb(220,228,240);}
+
+/* HEADER */
+table.BOOKVIEW th {cursor:pointer; width:8%; font-size:0.9em;}
+table.BOOKVIEW .hoursHeight {font-weight:bold; font-size:0.9em;}
+
+/* RULE */
+table.BOOKVIEW tr.rule td {border-left: 1px solid black; font-size:3px;}
+table.BOOKVIEW tr.rule td.s {border-left: 1px solid rgb(220,228,240);} /* this one is used for first box : no border to display */
+
+/* LINE */
+table.BOOKVIEW tr.line td {background-color:rgb(255,255,255);cursor:pointer;}
+/* unfree slot color background */
+table.BOOKVIEW tr.line td.q {background-color:#BB8822;}
+
+/* other school slot color background */
+table.BOOKVIEW tr.line td.p {background-color:#E04444;}
+
+/* other slot color background */
+table.BOOKVIEW tr.line td.o {background-color:#FF6655;}
+
+/* own school slot color background */
+table.BOOKVIEW tr.line td.m {background-color:#44BB44;}
+
+/* own slot color background */
+table.BOOKVIEW tr.line td.l {background-color:#22DD22;}
+
+/* night color background */
+table.BOOKVIEW tr.line td.n {background-color:#337AFF;}
+
+/* twilight color background */
+table.BOOKVIEW tr.line td.t {background-color:#66CCFF;}
+
+/* standard color background : used for first and last boxes */
+table.BOOKVIEW tr.line td.s {background-color:rgb(220,228,240);cursor:auto;} /* should be like BODY background*/
+
+/************ INFOBOX ****************/
+div.info {margin:0; padding:0 1em 0 1em; border: 1px solid rgb(160,176,192);text-align:justify;background-color:rgb(208,224,240);}
+img.info {margin:0.5em;}
+
+div.mainRow {padding:0;text-align:center;}
+
+/************ CONNECTED **************/
+ul.shortDesc {float:left;margin-left:0;margin-top:0;padding: 0.25em 0.5em 0.25em 0.5em;border: 1px solid rgb(160,176,192);background-color:rgb(208,224,240);}
+ul.shortDesc li {font-size:0.8em; list-style-type: none; text-align:left; margin:0px; padding:0px;}
+
+/************ EPHEMERIS **************/
+ul.ephemeris {float:right;margin-right:0;margin-top:0;padding: 0.25em 0.5em 0.25em 0.5em;border: 1px solid rgb(160,176,192);background-color:rgb(208,224,240);}
+ul.ephemeris li {font-size:0.8em; list-style-type: none; text-align:right;}
+
+/************ ARROWS-BOX *************/
+div.datePanel {text-align:center;width:auto;font-size:1.8em;}
+div.datePanel a.arrow,a.date,a.smalldate {border: 1px solid #A0B0C0;}
+div.datePanel a.arrow:hover,a.date:hover,a.smalldate:hover {border: 1px solid #607080;}
+
+a.arrow {color:#A0B0C0;width:1.5em;padding-left:0.1em;padding-right:0.1em;font-size:0.8em;}
+a.arrow:hover {color:#607080;}
+a.date {font-size:0.8em;padding:0.2em;white-space:nowrap;}
+a.smalldate {font-size:0.7em;padding:0.2em;white-space:nowrap;}
+
+#clock {font-size:0.6em;margin:0.4em;}
+
+/************************************************ FORMBOOKING ******************************************************************/
+
+#startCal {float:left;width:50%;}
+#endCal {float:right;width:50%;}
+#startCal table {background-color:white;border: 1px solid #808080;}
+#endCal table {background-color:white;border: 1px solid #808080;}
+
+/************************************************* POP-UPs ************************************************************/
+
+/* calendar popup used in the book displays */
+
+#calPopup {position:absolute;border:0px;padding:0px;margin:0px;overflow:hidden;background-color:white;}
+#calPopup table {margin:1px;}
+.cpMonthNavigation {background-color:#DCE4F0;font-size:1.1em;}
+.cpDayColumnHeader {padding: 0px 1px 0px 1px; margin:2px;text-align:right;font-size:1.1em;}
+.cpCurrentDate {padding: 0px 1px 0px 1px; margin:2px; background-color:#22DD22;text-align:right;font-size:1.1em;}
+.cpCurrentMonthDate {padding: 0px 1px 0px 1px; margin:2px;text-align:right;font-size:1.1em;}
+.cpOtherMonthDate {padding: 0px 1px 0px 1px; margin:2px; color:#BBC3CE;text-align:right;font-size:1.1em;}
+.cpTodayText {background-color:#DCE4F0;font-size:1.1em;}
+
+/* overLib popup used to display informations on bookings */
+
+#overDiv {position:absolute;visibility:hidden;z-index:1;font-size:1em;}
+
+
+/* FORMs style */
+
+.FORM_LABEL {font-size:14px;font-weight:bold;}
+.FORM_TITLE {font-size:16px;font-weight:bold;}
+
+/* ARRAY DISPLAY */
+.TABLE {font-size:14px;font-weight:bold;background-color:#DCE4F0;}
+
+/* space block */
+.b{border-left: 1px solid black;}
+
+/* fonts */
+
+.SUBTITLE_FONT {font-size:18px;font-weight:bold;text-align:left;}
+.MINI_TITLE_FONT {font-size:18px;font-weight:bold;text-align:center;}
+.HEADER_FORM_FONT {font-size:18px;}
+.CALLSIGN {font-size:14px;font-weight:bold;}
+.H{font-size:14px;font-weight:bold;}
+.PILOT {font-size:12px;}
+.INSTRUCTOR {font-size:12px;font-weight:bold;}
+
+/* Align of cellular */
+
+.RIGHT {text-align:right;}
+.LEFT {text-align:left;}

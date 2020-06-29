@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /classes/
+Disallow: /conf/
+Disallow: /displayClasses/
+Disallow: /flights/
+Disallow: /includes/
+Disallow: /install/
+Disallow: /javascript/
+Disallow: /lang/
+Disallow: /pear/
+Disallow: /pool/
+Disallow: /sql/
+Disallow: /template/

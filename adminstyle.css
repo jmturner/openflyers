@@ -1,0 +1,158 @@
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * adminstyle.css
+ *
+ * Cascading stylesheet used for the admin interface
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program (file license.txt);
+ * if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * 
+ * @category   cascading stylesheet
+ * @author     Patrick HUBSCHER <chakram@openflyers.org>
+ * @copyright  2003-2005 The OpenFlyers Group <devteam@openflyers.org>
+ * @license    http://www.gnu.org/licenses/gpl.html  GNU-GPL License
+ * @version    CVS: $Id: adminstyle.css,v 1.13.4.3 2006/05/01 09:06:28 claratte Exp $
+ * @link       http://openflyers.org
+ * @since      Fri Dec 13 2002
+ */
+
+	body 				{	background:#ffcc99; font-family: Arial,helvetica, verdana, sans-serif; font-size:12px; 
+							text-align:justify; margin: 0; padding: 0; }
+	p					{	text-align: center; }
+	a					{	font-family:Arial,verdana; font-size:12px; color:black; text-decoration:none; }
+	h1					{	text-align: center; font-size: 2em; margin: 0; background: #2505ac; color: white;}
+	.form_gen			{
+	color: #000000;
+	width: 80%;
+	margin: 10px;
+	border: thin solid black;
+	font-size: 12px;
+	font-weight: bold;
+	background : #ffffff;
+}
+	.form_cell			{	width: 33%; vertical-align: middle; font-size: 12px;}
+	.admin_titre		{	text-align: center; font-size: 2em; margin: 10px; border: thin solid black; background: white; }
+	.highlight			{	background: #cccccc; vertical-align: middle; }
+	.highlighted		{ 	background: #aaaaaa; vertical-align: middle; }
+	.nonavailable { background: #ffcc00; }
+	.adminbar			{	color: white; text-align: center; font-weight: bold; background: #687e9d;}
+	.insiston			{	font-weight: bolder; font-size: 12px; }
+	.white_admin		{ 	color: #ffffff; }
+	.white_admin:hover	{ 	color: #ffcc99; }
+	.warn				{	font-size: 12px; font-weight: bolder; color: red; border: 1px solid red; margin: 1em; background: #ffffff;;}
+	.dblink				{	font-family:arial, verdana; font-weight:bold; font-size: 14px; text-decoration: none; background: #687e9d; color: white; }
+	.dblink:hover		{	color: #ffcc99; font-size: 14px; }
+	.fee_expected	{
+	background-color : #66FF99;
+	font-weight: bolder;
+}
+
+.menu, .ssmenu {
+	background-color: #687e9d;
+	color:white;
+	font-size:12px;
+	font-weight:bold;
+	font-family:"MS Sans Serif", "sans-serif", Verdana, Arial;
+	border:1px solid #687e9d;
+	padding:1px;
+	/* width et margin sont au cas où le javascript est désactivé. */
+	width:15em;
+	margin:1em;
+}
+/* .menu = les cases toujours visibles (comme Fichier, Edition... dans un logiciel) */
+.menu {
+	text-align:center;
+}
+/* .ssmenu = Les parties "déroulantes" qui s'affiche au survol d'un .menu */
+.ssmenu {
+/* aller pour faire joli sur IE, un petit effet de dégradé !
+	Pour voir d'autres effets :
+	http://msdn.microsoft.com/workshop/samples/author/dhtml/DXTidemo/DXTidemo.htm
+	Par exemple :
+	transparence à 25% = opacité à 75%:
+		FILTER: progid:DXImageTransform.Microsoft.Alpha( style=0,opacity=75);
+	"Glow" :
+		FILTER: progid:DXImageTransform.Microsoft.Glow(color=#ffdead,strength=5);
+	Ombre en bas à droite, 5 px :
+		FILTER: progid:DXImageTransform.Microsoft.Shadow(direction=135,color=#ff8c00,strength=5);
+	*/
+	white-space : nowrap;
+}
+
+.menu span, .ssmenu span {
+/* Ne pas toucher
+	C'est pour cacher les ; en fin de <li>, ce qui permet aux synthèse vocales de prendre une
+	pause dans l'élocution */
+	display:none;
+}
+
+.ssmenu ul, .ssmenu li {
+/* Ne pas trop toucher.
+	Les items (les <li>) des sous-menus, notamment pour enlever les puces des liste */
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+
+.menu a, .ssmenu a, .menu a:visited, .ssmenu a:visited {
+/* Les liens qui ne sont pas sous le curseur. */
+	color:white;
+	padding:2px 1px;
+	text-decoration:none;
+/* Ne pas modifier le block */
+	display:block;
+/*	Un width:100% fait planter Mozilla, sans le width:100% c'est IE et Opera... La combinaison
+	aucun width et height:100% marche sur tous, donc ne pas toucher ces 2 lignes */
+/*	height:100%;
+	margin:0px;*/
+	margin:0px;
+	width:100%;
+}
+html>body .menu a, html>body .menu a:visited, html>body .menu a:hover, html>body .menu a:active,
+html>body .ssmenu a, html>body .ssmenu a:visited, html>body .ssmenu a:hover, html>body .ssmenu a:active {
+	width:auto;
+}
+
+.ssmenu ul:hover, .ssmenu a:hover, .ssmenu a:focus, .menu a:hover, .menu a:focus {
+	/* Les liens sous le curseur.On change les couleurs du texte et de fond, et on enlève le soulignement.*/
+	background-color:#ffcc99;
+	color: #687e9d;
+	text-decoration:none;
+}
+
+
+img {
+/* Si on met une image dans un lien (par exemple un logo à gauche du lien), pas de bordure
+	car c'est vilain :-p */
+	border:none;
+}
+
+.ssmenu img {
+/* un petit espacement entre l'image et le texte du lien <a href="..."><img.../>blabla</a> */
+	margin-right:2px;
+}
+
+.ssmenu img.hr {
+/* Encore un peu expérimental, un <hr /> entre deux items pour faire un "séparateur"... */
+	margin-top:1px;
+	margin-bottom:1px;
+	margin-left:0;
+	margin-right:0;
+	width:100%;
+	display:block;
+}

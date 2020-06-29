@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>XMLilisation d'OpenFlyers</title></head><body>
+<div align="Center"><h1>Pr&eacute;sentation de l'XMLilisation d'OpenFlyers</h1></div>
+<div align="Center"><font face="Helvetica, Arial, sans-serif">
+$Id: XMLilisation_OpenFlyers.html,v 1.2 2003/09/02 15:12:47 claratte Exp $ </font><br><font face="Helvetica, Arial, sans-serif">
+Purpose: description of OpenFlyers-XML</font><br><font face="Helvetica, Arial, sans-serif">
+Author: Christophe Laratte</font><br><br></div>
+
+Avant propos : la conception de la DTD (D&eacute;finition de Type de Document)
+XML ne n&eacute;cessite aucune connaissance en programmation. Par contre
+c'est l'&eacute;tape qui demande le plus de r&eacute;flexion car c'est elle
+qui permettra de savoir ce que l'on pourra faire ou non (un peu comme la
+conception d'une base de donn&eacute;es).<br>
+<br>
+
+Quelques d&eacute;finitions : XML est hyper simple et hyper ouvert. C'est
+juste un protocole qui permet la sch&eacute;matisation d'une structure en
+arbre (voir exemple). Il y a tr&egrave;s peu de choses &agrave; savoir (pour
+les non-programmeurs) :<br>
+<ul>
+<li>Balise : une balise commence par le symbole &lt; et se termine par
+le symbole &gt; (comme en HTML). Il existe 2 types de balises : les balises
+de d&eacute;but (ex : &lt;example&gt;) et les balises de fin (ex : &lt;/example&gt;).
+La diff&eacute;rence avec HTML, c'est que toute balise de d&eacute;but doit
+avoir sa balise "soeur" de fin et &agrave; l'identique (respect de la casse).
+En clair : une parenth&egrave;se ouverte doit obligatoirement &ecirc;tre
+ferm&eacute;e. Un document qui respecte cela s'appelle un document "bien
+form&eacute;". C'est juste une histoire de rigueur pour emp&eacute;cher les
+interpr&eacute;tations par les parseurs.</li><li>Attribut : c'est une sorte de variable contenu dans une balise de d&eacute;but (ex : &lt;example i="2"&gt;).</li><li>&eacute;l&eacute;ment : chose d&eacute;limit&eacute;e par une balise
+de d&eacute;but et sa balise de fin correspondante (ex : &lt;example&gt;Ceci
+est un &eacute;l&eacute;ment&lt;/example&gt; ).</li><li>&eacute;l&eacute;ment vide : &eacute;l&eacute;ment sans contenu (ex
+: &lt;example&gt;&lt;/example&gt; ), peut &ecirc;tre r&eacute;dig&eacute;
+sp&eacute;cialement : &lt;example /&gt;.</li><li>contenu d'un &eacute;l&eacute;ment : c'est ce qui est d&eacute;limit&eacute;
+par les balises de d&eacute;but et de fin de l'&eacute;l&eacute;ment (ex
+: &lt;example&gt;Ceci est le contenu&lt;/example&gt;)<br></li><li>Parseur : application charg&eacute;e d'avaler un fichier XML pour en
+sortir quelque chose d'autre qui peut &ecirc;tre tout et n'importe quoi (&agrave;
+commencer par du XML).<br></li>
+</ul>
+
+Le but est de permettre la g&eacute;n&eacute;ration d'un fichier xml contenant
+uniquement des donn&eacute;es et pouvant par la suite &ecirc;tre pars&eacute;
+ou non en fonction du support d'affichage.<br>
+<br>
+<div align="Center"><table width="80%" border="1" cellspacing="5" cellpadding="0" align="Center"><tbody><tr><td valign="Top" align="Center">&eacute;tapes<br></td><td valign="Top" align="Center" colspan="3" bgcolor="#00cccc">
+      <div align="Center">Base de donn&eacute;es MySQL<br></div>
+</td></tr><tr><td valign="Top" align="Center">1<br></td><td valign="Top" colspan="3">
+      <div align="Center">&#8593;&#8595; interrogation via fichier php*<br></div>
+</td></tr><tr><td valign="Top" align="Center">2<b><br></b></td><td valign="Top" colspan="3" bgcolor="#ff6600">
+      <div align="Center"><b>fichier XML**</b><br></div>
+</td></tr><tr><td valign="Top" align="Center">3<br></td><td valign="Top"><div align="Center">&#8595; parser via un fichier XSLT de mise en forme<br></div></td><td valign="Top"><div align="Right">&#8595;parser avec un fichier XSLT de mise en forme<br></div></td><td valign="Top"><div align="Right"><br></div></td></tr><tr><td valign="Top" align="Center">4<br></td><td valign="Top" bgcolor="#ffcccc"><div align="Center">g&eacute;n&eacute;ration d'un fichier wap</div></td><td valign="Top" bgcolor="#ffcccc"><div align="Center">g&eacute;n&eacute;ration d'un pseudo-fichier XHTML<br></div></td><td valign="Top">
+      <div align="Center">&#8595;parsage par un fichier flash c&ocirc;t&eacute; client<br>
+      </div>
+</td></tr><tr><td valign="Top" align="Center">5<br></td><td valign="Top"><br></td><td valign="Top"><div align="Center">&#8595;reparsage pour la langue<br></div></td><td valign="Top">
+      <div align="Center"><br>
+      </div>
+</td></tr></tbody></table></div>
+<br>
+* (exemple : r&eacute;cup&eacute;rer toutes les r&eacute;sa du 3 juillet 2003)<br>
+<br>
+**<b> "pure" : contenant uniquement des donn&eacute;es et pas de mise en forme</b><br><br>
+Les &eacute;tapes 3 et 5 devront peut-&ecirc;tre &ecirc;tre interverties, &agrave; voir.<br>
+<br>
+<b>Exemple :</b><br>
+<br>
+
+On peut cr&eacute;er une DTD autorisant ce type d&eacute;claration pour le fichier XML pure (ligne 2) :<br>
+<br>
+
+&lt;slot free_seats="1"&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;member num="121"&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;last_name&gt;BOSSY&lt;/last_name&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;first_name&gt;Jean&lt;/first_name&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;/member&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;aircraft num="3"&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;callsign&gt;F-GDLI&lt;/callsign&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;type&gt;DR 220&lt;/type&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;/aircraft&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;instructor&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;last_name&gt;LE VRAI&lt;/last_name&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;first_name&gt;Mec&lt;/first_name&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;/instructor&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;init&gt;2003-07-03 15:00&lt;/init&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;end&gt;2003-07-03 17:30&lt;/end&gt;<br>
+
+&lt;/slot&gt;<br>
+<br>
+
+Ce fichier est g&eacute;n&eacute;r&eacute; par du php en interrogeant la base MySQL (ligne 1)<br>
+<br>
+
+Ce fichier XML peut alors &ecirc;tre utilis&eacute; de diff&eacute;rentes fa&ccedil;ons suivant la mise en forme finale:<br>
+<ul>
+<li>S'il est destin&eacute; &agrave; un support Flash, c'est en fait le
+fichier Flash c&ocirc;t&eacute; client qui aura appel&eacute; le g&eacute;n&eacute;rateur
+php (ligne 1) et qui traitera directement le r&eacute;sultat. C'est ce que
+je fais ici : http://www.ur12.info/carte.php</li><li>S'il est destin&eacute; &agrave; un support HTML ou WAP, il doit y
+avoir une adaptation au format gr&acirc;ce &agrave; une feuille de style
+XSLT fixe (qui n'a pas besoin d'&ecirc;tre recompil&eacute;e ou recr&eacute;&eacute;e
+&agrave; chaque interrogation)</li>
+</ul>
+<b>Le parsage pour l'adaptation &agrave; la langue</b> est quelque chose
+de tr&egrave;s simple en XML. Il suffit &agrave; un endroit de dire quelle
+langue on veut et ensuite tous les champs sont remplac&eacute;s par la langue
+choisie.<br>
+<br>
+
+Exemple :<br>
+<br>
+
+Vous avez un fichier XML contenant en plus de la description des cr&eacute;neaux,
+un &eacute;l&eacute;ment pr&eacute;cisant la langue que souhaite l'utilisateur
+logu&eacute; (ex: &lt;lang&gt;fr&lt;/lang&gt;)<br>
+<br>
+
+Ce fichier est pars&eacute; en pseudo-XHTML et contient des balises qui ont
+besoin d'&ecirc;tre remplac&eacute;es par des mots qui d&eacute;pendent de
+la langue :<br>
+<br>
+
+&lt;lang&gt;fr&lt;/lang&gt;<br>
+
+...<br>
+
+&lt;sentence name="menu_1" /&gt;<br>
+<br>
+
+Vous avez un fichier XSLT qui contient toutes les langues et qui va remplac&eacute;
+ces &eacute;l&eacute;ments par des mots adapt&eacute;s &agrave; la langue
+:<br>
+<br>
+
+&lt;sentence name="menu_1"&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;span xml:lang="en"&gt;One day book&lt;/span&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;span xml:lang="fr"&gt;Cahier journailier&lt;/span&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;span xml:lang="es"&gt;Calier d&egrave; la journali&eacute;&lt;/span&gt;<br>
+
+&lt;/sentence&gt;<br>
+<br>
+
+et un truc dans ce style (attention je n'y connais rien, c'est de l'&agrave; peu pr&egrave;s pour ce faire une id&eacute;e) :<br>
+<br>
+
+&lt;xsl:template match="/sentence"&gt;<br>
+
+&nbsp;&nbsp;&nbsp; &lt;xsl:apply-templates select="quelque chose de tr&egrave;s
+compliqu&eacute; mais qui ne fait ressortir que la langue choisie par &lt;lang&gt;"
+/&gt;<br>
+
+&lt;/xsl:template&gt;<br>
+<br>
+<div align="Center"><h2>Pourquoi XML et pourquoi le couple XSLT/XML ?</h2><div align="Left">Xml s'impose comme un nouveau format standard de sauvegarde de donn&eacute;es. Ses deux gros avantages :<br><ul><li>du texte pure lisible (par notepad par exemple) qui permet une portabilit&eacute; ais&eacute;e.</li><li>repr&eacute;sentation de l'information sous type d'arbres plus ouverte qu'avec une base de donn&eacute;es.</li></ul>
+Son inconv&eacute;nient par rapport &agrave; une base de donn&eacute;es : la lenteur des requ&egrave;tes.<br><br><div align="Justify">S'il est donc &eacute;vident qu'il n'est pas int&eacute;ressant
+<i>actuellement</i> de supprimer toute base de donn&eacute;es pour la transformer
+en source XML, il n'en est pas moins int&eacute;ressant d'envisager de rajouter
+"une couche" dans la construction de la repr&eacute;sentation des informations
+ou encore d'utiliser ponctuellement XML pour la sauvegarde de certaines donn&eacute;es
+n&eacute;cessitant une sauvegarde hors base de donn&eacute;es (fichiers logs
+par exemple).<br><br>
+Aujourd'hui nous avons le processus de construction suivant :<br><br><table cellpadding="2" cellspacing="5" border="1" width="300" align="Center"><tbody><tr><td valign="Top" bgcolor="#00cccc"><div align="Center">Base de donn&eacute;es MySQL<br></div></td></tr><tr><td valign="Top"><div align="Center">interrogation via PHP &#8593;&#8595;<br></div></td></tr><tr><td valign="Top"><div align="Center">fichier de pr&eacute;sentation des donn&eacute;es XHTML<br></div></td></tr></tbody></table><br>
+en rajoutant un niveau XML (comme repr&eacute;sent&eacute; dans le premier
+tableau du document) on obtient les possibilit&eacute;s suivantes :<br></div></div></div>
+<br>
+<table cellpadding="2" cellspacing="5" border="1" width="600" align="Center">
+<tbody><tr><td valign="Top" colspan="3" bgcolor="#00cccc"><div align="Center">Base de donn&eacute;es MySQL<br></div></td></tr><tr><td valign="Top" colspan="3"><div align="Center">interrogation via PHP &#8593;&#8595;<br></div></td></tr><tr><td valign="Top" colspan="3" bgcolor="#ff6600"><div align="Center"><b>fichier de contenu XML</b><br></div></td></tr><tr><td valign="Top"><div align="Center">flux xml vers client &#8595;<br></div></td><td valign="Top"><div align="Center">parsage (XSLT ou PHP) &#8595;<br>
+(c&ocirc;t&eacute; serveur)<br></div></td><td valign="Top"><div align="Center">parsage (XSLT ou PHP) &#8595;<br>
+(c&ocirc;t&eacute; serveur)<br></div></td></tr><tr><td valign="Top"><div align="Center">parsage (c&ocirc;t&eacute; client) et pr&eacute;sentation par fichier Flash<br></div></td><td valign="Top"><div align="Center">fichier de pr&eacute;sentation des donn&eacute;es XHTML<br></div></td><td valign="Top"><div align="Center">fichier de pr&eacute;sentation des donn&eacute;es WAP<br></div></td></tr></tbody>
+</table>
+<br>
+
+L'int&eacute;r&ecirc;t de l'ajout de ce niveau XML et de la dissociation
+donn&eacute;es/pr&eacute;sentation est de pouvoir g&eacute;n&eacute;rer des
+pr&eacute;sentations diff&eacute;rentes comme le montre le tableau ci-dessus.<br>
+<br><b>
+
+Le fait d'utiliser XSLT &agrave; la place de PHP est juste de pouvoir permettre
+de rajouter une flexibilit&eacute; dans l'endroit o&ugrave; se fait le parsage
+: c&ocirc;t&eacute; serveur ou c&ocirc;t&eacute; client. Le fichier XSLT
+est en effet beaucoup plus universel que le PHP et donc plus souple d'utilisation</b>.<br>
+<br>
+
+L'autre int&eacute;r&ecirc;t est de pouvoir rajouter de l'interactivit&eacute;
+dans la pr&eacute;sentation d'une m&ecirc;me donn&eacute;e (XML) c&ocirc;t&eacute;
+client, du fait du parsage c&ocirc;t&eacute; client.<br>
+<br>
+
+En effet, on peut tr&egrave;s bien imager dans une version ult&eacute;rieure la conception suivante :<br>
+<br>
+<table cellpadding="2" cellspacing="5" border="1" width="600" align="Center">
+<tbody><tr><td valign="Top" colspan="3" bgcolor="#00cccc"><div align="Center">Base de donn&eacute;es sous forme d'arbre XML<br></div></td></tr><tr><td valign="Top" colspan="3"><div align="Center">premier parsage XSLT &#8595;<br></div></td></tr><tr><td valign="Top" colspan="3" bgcolor="#ff6600"><div align="Center"><b>fichier de contenu XML</b><br></div></td></tr><tr><td valign="Top"><div align="Center">flux xml vers client &#8595;<br></div></td><td valign="Top"><div align="Center">parsage XSLT &#8595;<br>
+(c&ocirc;t&eacute; serveur ou client)<br></div></td><td valign="Top"><div align="Center">parsage XSLT &#8595;<br>
+(c&ocirc;t&eacute; serveur)<br></div></td></tr><tr><td valign="Top"><div align="Center">parsage et pr&eacute;sentation par fichier Flash<br></div></td><td valign="Top"><div align="Center">fichier de pr&eacute;sentation des donn&eacute;es XHTML<br></div></td><td valign="Top"><div align="Center">fichier de pr&eacute;sentation des donn&eacute;es WAP<br></div></td></tr></tbody>
+</table>
+<br>
+
+Cela n'est pas forc&eacute;ment LA solution, mais cela met en &eacute;vidence
+une chose :<u><b> il faut absolument cr&eacute;er un niveau "fichier de contenu
+XML" autour duquel s'articulera tout le reste de l'application (aussi bien
+en amont qu'en aval)</b></u>. Bref, le coeur de l'application se trouve dans la d&eacute;finition
+des fichiers de contenu XML.<br>
+<br>
+
+Pour conclure voici ce que dit le document communiqu&eacute; par Patrice
+et Patrick sur les templates au sujet du choix XML/XSLT :<br>
+<br>
+"Une alternative aux solutions de templates traditionnelles tend &agrave;
+se dessiner ces derniers temps. Elle repose sur le couple XML/XSLT. XML (eXtensible
+Markup Language) permet de d&eacute;crire les donn&eacute;es et XSLT (eXtensible
+Stylesheet Language Transformations) en assure les transformations (mise
+en forme). On dit aussi que XSLT d&eacute;crit les r&egrave;gles de transformation
+ou &laquo; templates rules &raquo;. A noter quelques articles sur des retours
+d&#8217;exp&eacute;riences d&#8217;une telle approche :<br>
+<ul>
+<li>L&#8217;exemple du journal Le point : http://solutions.journaldunet.com/0201/020123_lepoint.shtml</li><li>L&#8217;exemple de France T&eacute;l&eacute;vision : http://fr.news.yahoo.com/020201/60/2gw3b.html</li>
+</ul>
+ A vrai dire,<b> l&#8217;utilisation de XML et XSLT devient un choix r&eacute;ellement
+pertinent lorsque diff&eacute;rentes cibles sont vis&eacute;es par un contenu
+similaire : le Web et le WAP ou encore la g&eacute;n&eacute;ration de documents
+en divers formats (HTML, PDF, RTF, etc.)</b>. A ce titre, la documentation de
+PHP, disponibles en plusieurs formats, est un bon exemple.<br>
+<br>
+A noter pour finir que PHP sait s&#8217;interfacer avec XML et XSLT (via Sablotron
+et expat). Et que certains projets prometteurs aurtour de XML et XSLT &eacute;mergent.
+On peut en particulier citer le projet Krysalis d&#8217;interAKT (http://www.interakt.ro/)."<br>
+</body></html>

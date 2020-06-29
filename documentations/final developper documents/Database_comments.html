@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>Database description</title>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+</head>
+<body>
+<div align="center">
+<h1><font face="Helvetica, Arial, sans-serif">Database comments</font></h1>
+<font face="Helvetica, Arial, sans-serif">$Id:Database_comments.html,v
+1.13 2004/06/09 15:58:17 claratte Exp $ <br>
+Purpose: description of OpenFlyers database<br>
+Author: Patrice Godard, Patrick Hubscher, Christophe Laratte<br>
+</font></div>
+<font face="Helvetica, Arial, sans-serif"><br>
+<u>Warning</u> : all NUMERIC fields are UNSIGNED and all DATETIME and
+TIME should have seconds be set 00.<br>
+</font>
+<h1>authentication.VIEW_TYPE</h1>
+bytes description (see authentication table)<br>
+<ul>
+  <li>bit 1: reserved</li>
+  <li>bit 2: reserved</li>
+  <li>bit 3: legend : 0=no legend, 4=popup window</li>
+  <li>bit 4: date displaying : 0=format 'YYYY-MM-DD', 8=format
+'DD-MM-YYYY'</li>
+  <li>bit 5: inst_on_one_day : 0=instructors are displayed on a day
+book, 16=no inst displayed</li>
+  <li>bit 6: aircraft_on_one_day : 0=aircrafts are displayed on a day
+book,
+32=no aircraft displayed</li>
+  <li>bit 7: 64=home_phone is public</li>
+  <li>bit 8: 128=work_phone is public</li>
+  <li>bit 9: 256=cell_phone is public</li>
+  <li>bit 10: 512=email is public</li>
+</ul>
+<h1>authentication.NOTIFICATION</h1>
+bytes description (see authentication table)<br>
+<ul>
+  <li>bit 1: mail : 0=no mail, 1=auto-mail<br>
+  </li>
+  <li>bit 2: sms : 0=no sms, 2=auto-sms</li>
+</ul>
+<h1>booking.SLOT_TYPE</h1>
+Description of slots enabled (constants are defined in
+booking.class.php file)<br>
+<br>
+<table border="1" cellpadding="2" cellspacing="0" width="50%">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">VALUE<br>
+      </td>
+      <td style="vertical-align: top;">NAME<br>
+      </td>
+      <td style="vertical-align: top;">DESCRIPTION<br>
+      </td>
+      <td style="vertical-align: top;">CONSTANT NAME<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">0<br>
+      </td>
+      <td valign="top">Pilot alone</td>
+      <td valign="top">no instructor<br>
+      </td>
+      <td style="vertical-align: top;">BOOK_ALONE<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">1<br>
+      </td>
+      <td valign="top">student pilot<br>
+      </td>
+      <td valign="top">instructor is mandatory<br>
+      </td>
+      <td style="vertical-align: top;">BOOK_INST<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">2<br>
+      </td>
+      <td valign="top">unusable<br>
+      </td>
+      <td valign="top">aircraft is grounded<br>
+      </td>
+      <td style="vertical-align: top;">BOOK_MECANIC<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1>clubs.FLAGS</h1>
+Description of clubs flags (see clubs table)<br>
+<br>
+<table border="1" cellpadding="2" cellspacing="0" width="50%">
+  <tbody>
+    <tr>
+      <td valign="top">0<br>
+      </td>
+      <td valign="top">same_day_book_box</td>
+      <td valign="top">display the check_box "same day" in the booking
+forms.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">1<br>
+      </td>
+      <td valign="top">comment_book_box<br>
+      </td>
+      <td valign="top">display the textarea "comments" in the booking
+forms.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1>parameter<br>
+</h1>
+Description of allowed parameters<br>
+<ul>
+  <li>CODE='QUALIF'</li>
+  <ul>
+    <li>if ENABLED=1, we have to consider QUALIF tables</li>
+    <li>INT_VALUE can have 2 values :</li>
+    <ul>
+      <li>0 : outdated or missing qualification required to book is not
+a RESTRICTION (a warning message only ask to confirm)</li>
+      <li>1 : books are NOT ALLOWED if qualif requirements are not
+filled</li>
+    </ul>
+    <li>CHAR_VALUE is not used</li>
+  </ul>
+  <li>CODE='SUBSCRIPTION'</li>
+  <ul>
+    <li>if ENABLED=1, we have to take care SUBSCRIPTION field in the
+members table but we do not apply different profile in case of outdate
+subscription<br>
+    </li>
+    <li>if ENABLED=2, we have to take care SUBSCRIPTION field in the
+members table AND manage outdate subscription date according to the
+INT_VALUE below<br>
+    </li>
+    <li>INT_VALUE correspond to the profile used in case of outdate
+subscription. If 0 : no connexion allowed</li>
+    <li>CHAR_VALUE is used has date and correspond to the default
+subscription date for new members</li>
+  </ul>
+  <li>code='NO_OPENTIME_LIMIT'</li>
+  <ul>
+    <li>if ENABLED=1, we do not have to check open time club hours for
+booking.</li>
+  </ul>
+  <li>code='NO_VISIT_REFRESH'</li>
+  <ul>
+    <li>if ENABLED=1, there is no refresh meta-tag in visitor acces.
+Useful to prevent auto connexion with&nbsp;a non permanent internet
+acces.</li>
+  </ul>
+  <li>code='BOOK_ALLOCATING_RULE'</li>
+  <ul>
+    <li>if ENABLED=1, we have to consider INT_VALUE</li>
+    <ul>
+      <li>0&nbsp;: standard allocating rule (default rule) : We book
+the aircraft selected and we do not move others</li>
+      <li>1 : by type allocating rule : we book the first avail
+aircraft of the same type than the selected one. We move up books when
+cancelling one and we unfree the first not unfree aircraft, moving down
+the others.</li>
+    </ul>
+  </ul>
+  <li>code='FLIGHT'</li>
+  <ul>
+    <li>if ENABLED=1, we have to consider flight tables according to
+INT_VALUE</li>
+    <ul>
+      <li>0 : complete filling process (open and close flight forms)</li>
+      <li>1 : only close flight form should be fill</li>
+    </ul>
+  </ul>
+  <li>code='BOOK_DATE_LIMITATION'</li>
+  <ul>
+    <li>if ENABLED=1, we have to consider date limitation according to
+INT_VALUE</li>
+    <ul>
+      <li>INT_VALUE = number of weeks while booking is allowed (after
+that, only book_anytime permit is allowed to book)</li>
+    </ul>
+  </ul>
+  <li>code='BOOK_DURATION_LIMITATION'</li>
+  <ul>
+    <li>if ENABLED=1, we have to consider duration limitation according
+to INT_VALUE</li>
+  </ul>
+  <ul>
+    <ul>
+      <li>INT_VALUE = number of &nbsp;hours which booking duration is
+allowed (after that, only book_anyduration permit is allowed to book)</li>
+    </ul>
+  </ul>
+  <li>code='NO_CALLSIGN_DISPLAY'</li>
+  <ul>
+    <li>if ENABLED=1, we do not display the callsign in the aircraft
+line display</li>
+  </ul>
+  <li>code='BOOK_INSTRUCTION_MIN_TIME'</li>
+  <ul>
+    <li>if ENABLED=1, we have to consider instruction minimum time
+according
+to INT_VALUE (otherwise instruction minimum time is equal to
+MIN_SLOT_RANGE field in the clubs table)</li>
+  </ul>
+  <ul>
+    <ul>
+      <li>INT_VALUE = number of &nbsp;minutes (should be a mutiple of
+15)</li>
+    </ul>
+  </ul>
+</ul>
+<h1>profiles.PERMITS</h1>
+Description of bytes<br>
+<br>
+PILOTS=INSTRUCTORS and/or MEMBERS<br>
+<br>
+<table border="1" cellpadding="2" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top"><b>Bit<br>
+      </b></td>
+      <td valign="top"><b>Decimal value<br>
+      </b></td>
+      <td valign="top"><b>Name<br>
+      </b></td>
+      <td valign="top"><b>Description</b><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">0<br>
+      </td>
+      <td valign="top">1<br>
+      </td>
+      <td valign="top">book_anytime </td>
+      <td valign="top">allowed to override booking date limitation </td>
+    </tr>
+    <tr>
+      <td valign="top">1<br>
+      </td>
+      <td valign="top">2<br>
+      </td>
+      <td bgcolor="#cccccc" valign="top">book_alone<br>
+      </td>
+      <td valign="top">allowed to be book with an aircraft and without
+an instructor<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">2<br>
+      </td>
+      <td valign="top">4<br>
+      </td>
+      <td bgcolor="#dddddd" valign="top">book_instruction<br>
+      </td>
+      <td valign="top">allowed to be book with an aircraft and with an
+instructor (should be set everytime for a member profile)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">3<br>
+      </td>
+      <td valign="top">8<br>
+      </td>
+      <td bgcolor="#cccccc" valign="top">freeze_aircrafts<br>
+      </td>
+      <td valign="top">allowed to make an aircraft grounded<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">4<br>
+      </td>
+      <td valign="top">16<br>
+      </td>
+      <td bgcolor="#dddddd" valign="top">freeze_instructors<br>
+      </td>
+      <td valign="top">allowed to manage an instructor disponibility<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">5<br>
+      </td>
+      <td valign="top">32<br>
+      </td>
+      <td bgcolor="#cccccc" valign="top">book_unfree_inst<br>
+      </td>
+      <td valign="top">allowed to book an instructor who is normally
+not avalaible (see exceptionnal_inst_dates and
+regular_presence_inst_dates tables)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">6<br>
+      </td>
+      <td valign="top">64<br>
+      </td>
+      <td bgcolor="#dddddd" valign="top">set_pilots_file<br>
+      </td>
+      <td valign="top">can change every members and instructors file
+datas, create/delete them<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">7<br>
+      </td>
+      <td valign="top">128<br>
+      </td>
+      <td bgcolor="#cccccc" valign="top">set_own_qualifications<br>
+      </td>
+      <td valign="top">can change own authorizations and licences
+validities<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">8<br>
+      </td>
+      <td valign="top">256<br>
+      </td>
+      <td bgcolor="#dddddd" valign="top">set_club_parameters<br>
+      </td>
+      <td valign="top">can change club datas. His main goal is to
+create every profile for his own
+club, to distribute them and to allow set_all_pilots_file to distribute
+some
+of them (USUAL_PROFILES field in clubs TABLE) to members and
+instructors (ie pilots).<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">9<br>
+      </td>
+      <td valign="top">512<br>
+      </td>
+      <td bgcolor="#cccccc" valign="top">set_aircrafts_file<br>
+      </td>
+      <td valign="top">can change aircrafts properties, create/delete
+them<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">10<br>
+      </td>
+      <td valign="top">1024<br>
+      </td>
+      <td style="background-color: rgb(221, 221, 221);" valign="top">set_own_limitation<br>
+      </td>
+      <td valign="top">allowed to modify own date limitation for
+qualifications</td>
+    </tr>
+    <tr>
+      <td valign="top">11<br>
+      </td>
+      <td valign="top">2048<br>
+      </td>
+      <td bgcolor="#cccccc" valign="top">book_all<br>
+      </td>
+      <td valign="top">can book/cancel every one according to the book
+capability of this person (book_alone and book_instructor)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">23<br>
+      </td>
+      <td valign="top">8388608<br>
+      </td>
+      <td valign="top">book_any_duration<br>
+      </td>
+      <td valign="top">allowed to override booking duration limitation<br>
+      </td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>16777216</td>
+      <td>no_auto_logout</td>
+      <td>no automatic logout after X minutes connexion</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+</body>
+</html>

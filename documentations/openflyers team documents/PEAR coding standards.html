@@ -1,0 +1,842 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0043)http://pear.php.net/manual/fr/standards.php -->
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>OpenFlyers :: Convention de codage</title>
+<link href="/gifs/favicon.ico" rel="shortcut icon" />
+<link href="style.css" rel="stylesheet" />
+<link href="manual.css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body>
+<table class="middle" cellspacing="0" cellpadding="0">
+  <tbody>
+  <tr>
+<td class="content"> 
+        <div class="chapter">
+      <h1><A name=standards>OpenFlyers : Convention de codage (convention PEAR &copy; The PHP Group)</h1>
+          <div class="sect1">
+<h1 class="sect1"><A name=standards.indenting>Indentation et longueur de 
+      lignes</h1>
+          <p>Utilisez une indentation de 4 espaces, sans tabulation. Si vous utilisez 
+            Emacs pour éditer le code PEAR, vous devez fixer le paramètre indent-tabs-mode 
+            à 'nil'. Vous trouverez ici un exemple de configuration de Emacs pour 
+            respecter ces recommendations (vous devrez vous assurer qu'elle est 
+            bien appelée lorsque vous éditerez les fichiers PHP) : </p>
+          <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0"><tbody>
+        <tr>
+          <td><pre class="elisp">(defun php-mode-hook ()
+  (setq tab-width 4
+        c-basic-offset 4
+        c-hanging-comment-ender-p nil
+        indent-tabs-mode
+  (not
+    (and (string-match "/\\(PEAR\\|pear\\)/" (buffer-file-name))
+      (string-match "\.php$" (buffer-file-name))))))</pre></td></tr></tbody></table></P>
+          <p>De la même façon, vous trouverez ici les règles pour vim : </p>
+          <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0"><tbody>
+        <tr>
+          <td><pre class="vim">set expandtab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4</pre></td></tr></tbody></table></P>
+      <p>Il est recommandé que la longueur des lignes ne dépasse pas 75 à 85 
+      caractères. Il n'y a pas de règles fixes par rapport aux retours à la 
+      ligne, mais vous pouvez utiliser votre bon jugement. En cas de doutes, 
+      vous pouvez demander sur la <a href="mailto:pear-qa@lists.php.net" 
+      target="_top">liste de distribution PEAR Quality Assurance</a>. 
+      </p></div></div>
+      </td>
+</tr>
+  <tr>
+    <td></TBODY></td>
+  </tr>
+  <tbody>
+    <tr>
+      <td class="content"> <div class="sect1"> 
+          <h1 class="sect1"><A name=standards.control>Structures de Contrôles</h1>
+          <p>Les structures de contrôles incluent les 'if', 'for', 'while', 'switch', 
+            etc. Vous trouverez ici un exemple de structure 'if' qui est la plus 
+            compliquée : </p>
+          <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0">
+            <tbody>
+              <tr> 
+                <td><pre class="php"><code><font color="#000000">
+<font color="#0000bb">&lt;?php
+</font><font color="#7f007f">if ((</font><font color="#0000bb">condition1</font><font color="#7f007f">) || (</font><font color="#0000bb">condition2</font><font color="#7f007f">)) {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000bb">action1</font><font color="#7f007f">;
+} elseif ((</font><font color="#0000bb">condition3</font><font color="#7f007f">) &amp;&amp; (</font><font color="#0000bb">condition4</font><font color="#7f007f">)) {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000bb">action2</font><font color="#7f007f">;
+} else {
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000bb">defaultaction</font><font color="#7f007f">;
+}
+</font><font color="#0000bb">?&gt;</font>
+</font>
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table></P>
+          <p>Les instructions de contrôle doivent avoir un espace entre le mot 
+            clé de l'instruction et la parenthèse ouvrante, afin de ne pas les 
+            confondre avec des appels de fonction. </p>
+          <p>Il est vivement recommandé de toujours utiliser des accolades, même 
+            dans les situations où elles sont techniquement optionnelles. Leur 
+            présence augmente la lisibilité du code et réduit le risque d'erreur 
+            logique lors de l'ajout de nouvelles lignes de code. </p>
+          <p>Pour l'instruction 'switch' : </p>
+          <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0">
+            <tbody>
+              <tr> 
+                <td><pre class="php"><code><font color="#000000">
+<font color="#0000bb">&lt;?php
+</font><font color="#7f007f">switch (</font><font color="#0000bb">condition</font><font color="#7f007f">) {
+case </font><font color="#0000bb">1</font><font color="#7f007f">:
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000bb">action1</font><font color="#7f007f">;
+&nbsp;&nbsp;&nbsp;&nbsp;break;
+
+case </font><font color="#0000bb">2</font><font color="#7f007f">:
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000bb">action2</font><font color="#7f007f">;
+&nbsp;&nbsp;&nbsp;&nbsp;break;
+
+default:
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000bb">defaultaction</font><font color="#7f007f">;
+&nbsp;&nbsp;&nbsp;&nbsp;break;
+}
+</font><font color="#0000bb">?&gt;</font>
+</font>
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table></P>
+        </div>
+        
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="content">
+<div class="sect1"> 
+          <h1 class="sect1"><A name=standards.funcalls>Appels de Fonctions</h1>
+          <p>Les fonctions doivent être appelées sans espace entre le nom de la 
+            fonction, la parenthèse ouvrante, et le premier paramètre ; avec un 
+            espace entre la virgule et chaque paramètre et aucun espace entre 
+            le dernier paramètre, la parenthèse fermante et le point virgule. 
+            Voici un exemple : </p>
+          <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0">
+            <tbody>
+              <tr> 
+                <td><pre class="php"><code><font color="#000000">
+<font color="#0000bb">&lt;?php
+$var </font><font color="#7f007f">= </font><font color="#0000bb">foo</font><font color="#7f007f">(</font><font color="#0000bb">$bar</font><font color="#7f007f">, </font><font color="#0000bb">$baz</font><font color="#7f007f">, </font><font color="#0000bb">$quux</font><font color="#7f007f">);
+</font><font color="#0000bb">?&gt;</font>
+</font>
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table></P>
+          <p>Comme montré ci-dessus, il doit y avoir un espace de chaque côté 
+            du signe égal utilisé pour affecter la valeur de retour de la fonction 
+            à une variable. Dans le cas d'un bloc d'instructions similaires, des 
+            espaces supplémentaires peuvent être ajoutés pour améliorer la lisibilité 
+            : </p>
+          <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0">
+            <tbody>
+              <tr> 
+                <td><pre class="php"><code><font color="#000000">
+<font color="#0000bb">&lt;?php
+$short&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f007f">= </font><font color="#0000bb">foo</font><font color="#7f007f">(</font><font color="#0`??000bb">$bar</font><font color="#7f007f">);
+</font><font color="#0000bb">$long_variable </font><font color="#7f007f">= </font><font color="#0000bb">foo</font><font color="#7f007f">(</font><font color="#0000bb">$baz</font><font color="#7f007f">);
+</font><font color="#0000bb">?&gt;</font>
+</font>
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table></P>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="content">
+<div class="sect1"> 
+          <h1 class="sect1"><A name=standards.funcdef>Définitions des Fonctions</h1>
+          <p>La déclaration des fonctions respecte l'indentation classique des 
+            accolades : </p>
+          <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0">
+            <tbody>
+              <tr> 
+                <td><pre class="php"><code><font color="#000000">
+<font color="#0000bb">&lt;?php
+</font><font color="#7f007f">function </font><font color="#0000bb">fooFunction</font><font color="#7f007f">(</font><font color="#0000bb">$arg1</font><font color="#7f007f">, </font><font color="#0000bb">$arg2 </font><font color="#7f007f">= </font><font color="#007f00">''</font><font color="#7f007f">)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000bb">condition</font><font color="#7f007f">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000bb">statement</font><font color="#7f007f">;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000bb">$val</font><font color="#7f007f">;
+}
+</font><font color="#0000bb">?&gt;</font>
+</font>
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table></P>
+          <p>Les arguments possédant des valeurs par défaut vont à la fin de la 
+            liste des arguments. Il faut toujours chercher à retourner une valeur 
+            ayant un sens lorsque cela est possible. Voici un exemple un peu plus 
+            long : </p>
+          <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0">
+            <tbody>
+              <tr> 
+                <td><pre class="php"><code><font color="#000000">
+<font color="#0000bb">&lt;?php
+</font><font color="#7f007f">function </font><font color="#0000bb">connect</font><font color="#7f007f">(&amp;</font><font color="#0000bb">$dsn</font><font color="#7f007f">, </font><font color="#0000bb">$persistent </font><font color="#7f007f">= </font><font color="#0000bb">false</font><font color="#7f007f">)
+{
+&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000bb">is_array</font><font color="#7f007f">(</font><font color="#0000bb">$dsn</font><font color="#7f007f">)) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000bb">$dsninfo </font><font color="#7f007f">= &amp;</font><font color="#0000bb">$dsn</font><font color="#7f007f">;
+&nbsp;&nbsp;&nbsp;&nbsp;} else {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000bb">$dsninfo </font><font color="#7f007f">= </font><font color="#0000bb">DB</font><font color="#7f007f">::</font><font color="#0000bb">parseDSN</font><font color="#7f007f">(</font><font color="#0000bb">$dsn</font><font color="#7f007f">);
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;if (!</font><font color="#0000bb">$dsninfo </font><font color="#7f007f">|| !</font><font color="#0000bb">$dsninfo</font><font color="#7f007f">[</font><font color="#007f00">'phptype'</font><font color="#7f007f">]) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000bb">$this</font><font color="#7f007f">-&gt;</font><font color="#0000bb">raiseError</font><font color="#7f007f">();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000bb">true</font><font color="#7f007f">;
+}
+</font><font color="#0000bb">?&gt;</font>
+</font>
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table></P>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="content">
+<div class="sect1"> 
+          <h1 class="sect1"><A name=standards.comments>Commentaires</h1>
+          <p>La documentation des classes incluses dans le code source doit suivre 
+            la convention PHPDoc, similaire à celle de Javadoc. Pour plus d'information 
+            au sujet de PHPDoc, reportez-vous à : <a 
+      href="http://www.phpdoc.org/" target="_top">http://www.phpdoc.org/</a> </p>
+          <p>Les commentaires non inclus dans la documentation sont vivement encouragés. 
+            La règle générale est que, si en regardant une portion de code, vous 
+            pensez <span class="QUOTE">&lt;&lt;&nbsp;Wauouh, je ne veux pas me lancer 
+            dans cette explication&nbsp;&gt;&gt;</span>, il faut absolument la 
+            commenter tout de suite avant que vous n'oubliez comment cela fonctionne. 
+          </p>
+          <p>Les commentaires du type C (/* */) et les commentaires standard C++ 
+            (//) sont tous les deux acceptés. Les commentaires de type Perl/shell 
+            (#) sont à éviter. </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="content">
+<div class="sect1"> 
+          <h1 class="sect1"><A name=standards.including>Inclure du Code</h1>
+          <p>A chaque endroit où vous voulez inclure de façon inconditionnelle 
+            un fichier de classe, utilisez <b class="function">require_once()</b>. 
+            A chaque endroit où vous voulez inclure de façon conditionnelle un 
+            fichier de classe (par exemple des méthodes de construction), utilisez 
+            <b 
+      class="function">include_once()</b>. Ces deux méthodes s'assurent que le fichier 
+            classe n'est inclus qu'une seule fois. Elles partagent la même liste 
+            de fichiers, il donc possible de les mélanger - un fichier inclus 
+            avec <b class="function">require_once()</b> ne sera pas inclus une seconde 
+            fois par <b class="function">include_once()</b>. </p>
+          <div class="note"> 
+            <blockquote class="note"> 
+              <p><b>Note&nbsp;: </b><b class="function">include_once()</b> et <b 
+        class="function">require_once()</b> sont des instructions, pas des fonctions. 
+                Vous <span class="emphasis"><i class="emphasis">n'avez pas besoin</i></span> 
+                de parenthèses autour du nom de fichier à inclure. </p>
+            </blockquote>
+          </div>
+          <p></p>
+        </div>
+        </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="content"> 
+        <div class="sect1"> 
+          <h1 class="sect1"><A name=standards.tags>Tags dans le Code PHP</h1>
+          <p><span class="emphasis"><i class="emphasis">Toujours</i></span> utiliser 
+            <tt 
+      class="literal">&lt;?php ?&gt;</tt> pour délimiter du code PHP, et non la 
+            version abrégée <tt class="literal">&lt;? ?&gt;</tt>. Celà est obligatoire 
+            pour être conforme aux règles de PEAR et c'est aussi la méthode la 
+            plus portable pour inclure du code PHP sur les différents systèmes 
+            d'exploitations et les différentes configurations. </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="content">
+<div class="sect1"> 
+          <h1 class="sect1"><A name=standards.header>Commentaires d'En-tête</h1>
+          <p>Tout fichier de code source se trouvant dans le coeur de la distribution 
+            PEAR doit contenir le bloc de commentaires suivant comme en-tête : 
+          </p>
+          <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0">
+            <tbody>
+              <tr> 
+                <td><pre class="php"><code><font color="#000000">
+<font color="#0000bb">&lt;?php
+</font><font color="#666666">/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+// +----------------------------------------------------------------------+
+// | PHP version 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// +----------------------------------------------------------------------+
+// | Copyright (c) 1997-2004 The PHP Group&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// +----------------------------------------------------------------------+
+// | This source file is subject to version 3.0 of the PHP license,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// | that is bundled with this package in the file LICENSE, and is&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// | available through the world-wide-web at the following url:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// | http://www.php.net/license/3_0.txt.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// | If you did not receive a copy of the PHP license and are unable to&nbsp;&nbsp;&nbsp;|
+// | obtain it through the world-wide-web, please send a note to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// | license@php.net so we can mail you a copy immediately.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// +----------------------------------------------------------------------+
+// | Authors: Original Author &amp;lt;author@example.com&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name &amp;lt;you@example.com&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// +----------------------------------------------------------------------+
+//
+// &amp;dollar;Id&amp;dollar;
+</font><font color="#0000bb">?&gt;</font>
+</font>
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table></P>
+          <p>Il n'y a pas de règle imposée pour déterminer quand un nouveau contributeur 
+            doit être ajouté à la liste des auteurs pour un fichier particulier. 
+            En général il faut que ses modifications soient significatives (soit 
+            environ 10% à 20% de changement du code). Des exceptions étant possibles 
+            pour les personnes ayant réalisés un re-codage des fonctions ou apportés 
+            une nouvelle logique. </p>
+          <p>La simple réorganisation du code ou la correction de bogues ne justifie 
+            pas l'ajout d'une personne dans la liste des auteurs. </p>
+          <p>Les fichiers ne se trouvant pas dans le coeur de PEAR doivent avoir 
+            un bloc de commentaires similaire indiquant le copyright, la license 
+            et les auteurs. Chaque fichier doit inclure les commentaires <span 
+      class="QUOTE">&lt;&lt;&nbsp;modeline&nbsp;&gt;&gt;</span> pour encourager 
+            la cohérence. </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="content">
+<div class="sect1"> 
+          <h1 class="sect1"><A name=standards.cvs>Utilisation de CVS</h1>
+          <p>Cette partie ne s'applique qu'aux paquetages qui utilisent CVS à 
+            cvs.php.net. </p>
+          <p>Inclure le mot clé CVS $Id: PEAR\040coding\040standards.html,v 1.1 2005/01/17 10:02:51 claratte Exp $ dans chaque fichier. Lorsque le fichier 
+            est édité, ajouter ce tag s'il n'est pas déjà présent (ou remplacer 
+            toute forme déjà existante du type <span class="QUOTE">&lt;&lt;&nbsp;Dernière 
+            Modification :&nbsp;&gt;&gt;</span>, etc.). </p>
+          <p>Le reste de cette partie suppose que vous avez les connaissances 
+            de base des tags CVS et des branches. </p>
+          <p>Les tags CVS sont utilisés pour identifier quelles versions des fichiers 
+            de votre paquetage appartiennent à une distribution (release) particulière. 
+            Ci-dessous se trouve la liste des tags CVS obligatoires ou suggérés 
+            : </p>
+          <p></p>
+          <div class="variablelist"> 
+            <dl>
+              <dt>RELEASE_<tt class="replaceable"><i>n_n_n</i></tt> </dt>
+              <dd> 
+                <p>(obligatoire) A utiliser pour identifier une release. Si vous 
+                  ne l'utilisez pas, il n'y a aucun moyen de revenir en arrière 
+                  et récupérer votre paquetage depuis le serveur CVS dans l'état 
+                  dans lequel il était au moment de la release. </p>
+              </dd>
+              <dt>QA_<tt class="replaceable"><i>n_n_n</i></tt> </dt>
+              <dd> 
+                <p>(branche, optionnel) Si vous pensez que vous devez faire une 
+                  release candidate (pre-release), faire une branche est peut 
+                  être une bonne idée car cela permet d'isoler la release et y 
+                  appliquer uniquement les corrections majeures avant la véritable 
+                  release. Pendant ce temps les développements normaux peuvent 
+                  se poursuivre dans le tronc principal. </p>
+              </dd>
+              <dt>MAINT_<tt class="replaceable"><i>n_n_n</i></tt> </dt>
+              <dd> 
+                <p>(branche, optionnel) Si vous avez besoin de faire une <span 
+        class="QUOTE">&lt;&lt;&nbsp;micro-release&nbsp;&gt;&gt;</span> (par exemple 
+                  1.2.1 et ainsi de suite après 1.2), vous pouvez aussi, si votre 
+                  tronc principal est trés actif et que vous ne voulez que des 
+                  modifications mineures entre vos micro-releases, utiliser une 
+                  branche pour cela. </p>
+              </dd>
+            </dl>
+          </div>
+          Seul le tag RELEASE est obligatoire, le reste est recommandé pour vous 
+          simplifier la vie. 
+          <p></p>
+          <p>Ci-dessous se trouve un exemple décrivant comment utiliser les tags 
+            pour la release 1.2.0 du paquetage <b class="classname">Money_Fast</b> 
+            : </p>
+          <div class="informalexample"><A name=AEN681> 
+            <p></p>
+            <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0">
+              <tbody>
+                <tr> 
+                  <td><pre class="screen"><tt class="prompt">$ </tt><b class="command">cd pear/Money_Fast</b>
+<tt class="prompt">$ </tt><b class="command">cvs tag RELEASE_1_2_0</b>
+<tt class="computeroutput">T Fast.php
+T README
+T package.xml
+</tt></pre></td>
+                </tr>
+              </tbody>
+            </table>
+            <p></p>
+          </div>
+          En faisant celà, vous permettez au site web PEAR de vous faire continuer 
+          le processus de release. 
+          <p></p>
+          <p>Voici une exemple sur la façon de créer une branche QA : </p>
+          <div class="informalexample"><A name=AEN689> 
+            <p></p>
+            <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0">
+              <tbody>
+                <tr> 
+
+                  <td><pre class="screen"><tt class="prompt">$ </tt><b class="command">cvs tag QA_2_0_0_BP</b>
+...
+<tt class="prompt">$ </tt><b class="command">cvs rtag -b -r QA_2_0_0_BP QA_2_0_0</b>
+<tt class="prompt">$ </tt><b class="command">cvs update -r QA_2_0_0</b>
+<tt class="prompt">$ </tt><b class="command">cvs tag RELEASE_2_0_0RC1</b>
+...et ensuite on tague la release en cours, à partir de la même branche :
+<tt class="prompt">$ </tt><b class="command">cvs tag RELEASE_2_0_0</b></pre></td>
+                </tr>
+              </tbody>
+            </table>
+            <p></p>
+          </div>
+          Le tag <tt class="literal">QA_2_0_0_BP</tt> est un tag <span 
+      class="QUOTE">&lt;&lt;&nbsp;point de dérivation&nbsp;&gt;&gt;</span> qui est 
+          le point de départ d'une branche. C'est toujours une bonne idée de démarrer 
+          une branche CVS depuis un tel point. Les branches de maintenance peuvent 
+          utiliser le tag RELEASE comme leur point de dérivation. 
+          <p></p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="content">
+<div class="sect1"> 
+          <h1 class="sect1"><A name=standards.exampleurls>Exemple d'URLs</h1>
+          <p>Utiliser <tt class="literal">example.com</tt>, <tt 
+      class="literal">example.org</tt> et <tt class="literal">example.net</tt> pour 
+            tous les exemples d'URLs et exemples d'email (<a 
+      href="http://www.faqs.org/rfcs/rfc2606" target="_top">RFC 2606</a>). </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="middle" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td class="content">
+<div class="sect1"> 
+          <h1 class="sect1"><A name=standards.naming>Conventions de Nom</h1>
+          <div class="sect2"> 
+            <h2 class="sect2"><A name=AEN712>Classes</h2>
+            <p>Les classes doivent avoir un nom parlant. Eviter les abréviations 
+              lorsque cela est possible. Les noms de classes doivent toujours 
+              commencer par une majuscule. L'architecture hiérarchique des classes 
+              PEAR se retrouve aussi dans le nom de la classe, chaque niveau de 
+              la hiérarchie étant séparé par un trait souligné (_). Exemples de 
+              noms de classe valides : </p>
+            <div class="informaltable"><A name=AEN715> 
+              <p></p>
+              <table class="CALSTABLE" border="1">
+                <tbody>
+                  <tr> 
+                    <td valign="center" align="left"> <p>Log</p></td>
+                    <td valign="center" align="left"> <p>Net_Finger</p></td>
+                    <td valign="center" align="left"> <p>HTML_Upload_Error</p></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+            <p></p>
+          </div>
+          <div class="sect2"> 
+            <h2 class="sect2"><A name=AEN725>Fonctions et Méthodes</h2>
+            <p>Les fonctions et les méthodes doivent être nommées en utilisant 
+              le style <span class="QUOTE">&lt;&lt;&nbsp;studly caps&nbsp;&gt;&gt;</span> 
+              (NDT : Utilisation de majuscules en milieu de mot pour marquer visuellement 
+              la séparation entre les mots sans utiliser d'espaces ou séparateurs, 
+              aussi connus sous les noms de <span 
+      class="QUOTE">&lt;&lt;&nbsp;bumpy case&nbsp;&gt;&gt;</span> ou <span 
+      class="QUOTE">&lt;&lt;&nbsp;camel caps&nbsp;&gt;&gt;</span>). Les fonctions 
+              doivent de plus avoir le nom du paquetage comme préfixe, pour éviter 
+              les doublons entre les paquetages. La première lettre du nom (après 
+              le préfixe pour une fonction) est une minuscule, et chaque premier 
+              caractère d'un nouveau <span class="QUOTE">&lt;&lt;&nbsp;mot&nbsp;&gt;&gt;</span> 
+              doit être une majuscule. Quelques exemples : </p>
+            <div class="informaltable"><A name=AEN732> 
+              <p></p>
+              <table class="CALSTABLE" border="1">
+                <tbody>
+                  <tr> 
+                    <td valign="center" align="left"> <p>connect()</p></td>
+                    <td valign="center" align="left"> <p>getData()</p></td>
+                    <td valign="center" align="left"> <p>buildSomeWidget()</p></td>
+                    <td valign="center" align="left"> <p>XML_RPC_serializeData()</p></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+            <p></p>
+            <p>Les éléments (méthodes, attributs) privés d'une classe sont précédés 
+              d'un simple souligné (_) (ces éléments sont destinés à n'être utilisés 
+              que par la classe qui les déclarent ; PHP ne supportant pas encore 
+              le contrôle des noms privés). Par exemple : </p>
+            <div class="informaltable"><A name=AEN745> 
+              <p></p>
+              <table class="CALSTABLE" border="1">
+                <tbody>
+                  <tr> 
+                    <td valign="center" align="left"> <p>_sort()</p></td>
+                    <td valign="center" align="left"> <p>_initTree()</p></td>
+                    <td valign="center" align="left"> <p>$this-&gt;_status</p></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p></p>
+            </div>
+            <p></p>
+          </div>
+          <div class="sect2"> 
+            <h2 class="sect2"><A name=AEN755>Constantes</h2>
+            <p>Les constantes doivent toujours être en majuscule, les mots séparés 
+              par des '_'. Préfixez les noms des constantes avec le nom en majuscule 
+              de la classe/paquetage dans laquelle elle est utilisée. Par exemple, 
+              les constantes utilisées par le paquetage <tt class="literal">DB::</tt> 
+              commencent toutes par <tt class="literal">DB_</tt>. </p>
+          </div>
+          <div class="sect2"> 
+            <h2 class="sect2"><A name=AEN760>Variables Globales</h2>
+            <p>Si votre paquetage a besoin de définir des variables globales, 
+              leurs noms doivent commencer par un simple '_' suivi par le nom 
+              du paquetage et un autre '_'. Par exemple, le paquetage PEAR utilise 
+              une variable globale appelée $_PEAR_destructor_object_list. </p>
+          </div>
+        </div>
+        </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="content">
+<div class="sect1"> 
+          <h1 class="sect1"><A name=standards.file>Formats des fichiers</h1>
+          <p>Tous les scripts apportés à PEAR doivent : </p>
+          <p></p>
+          <ul>
+            <li> 
+              <p>Etre stocké comme du texte ASCII </p>
+            </li>
+            <li> 
+              <p>Utiliser le jeux de caractères ISO-8859-1 </p>
+            </li>
+            <li> 
+              <p>Etre formaté Unix </p>
+              <p>Le <span class="QUOTE">&lt;&lt;&nbsp;formatage Unix&nbsp;&gt;&gt;</span> 
+                signifie deux choses : </p>
+              <p>1) Les lignes doivent finir uniquement par un retour à la ligne 
+                (<tt 
+        class="literal">LF</tt>). Les retours à la ligne sont représentés par l'ordinal 
+                <tt class="literal">10</tt>, l'octal <tt class="literal">012</tt> 
+                et l'hexa <tt class="literal">0A</tt>. N'utiliser pas les retours 
+                <tt 
+        class="literal">carriage</tt> (<tt class="literal">CR</tt>) comme le font 
+                les Macintosh ou les combinaisons de retour carriage/retour à 
+                la ligne (<tt class="literal">CRLF</tt>) comme le fait Windows. 
+              </p>
+              <p>2) Il ne doit y avoir qu'<span class="emphasis"><i class="emphasis">un 
+                seul</i></span> retour à la ligne après la fermeture du tah PHP 
+                (<tt 
+        class="literal">?&gt;</tt>). Celà signifie que lorsquele curseur est à la 
+                fin du fichier, il doit y avoir <span class="emphasis"><i 
+        class="emphasis">une seule</i></span> après le tag PHP fermant. </p>
+            </li>
+          </ul>
+          <p></p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td class="content">
+<div class="sect1"> 
+          <h1 class="sect1"><A name=standards.sample>Fichier d'exemple</h1>
+          <p>Le mot clé CVS <b class="command">Id</b> que vous voyez dans l'exemple 
+            ci-dessous contient les données pour le fichier utilisé pour créer 
+            le document que vous êtes en train de lire. Lorsque vous créez votre 
+            propre script PEAR, remplacez-le par un mot clé vide : <tt 
+      class="literal">$Id: PEAR\040coding\040standards.html,v 1.1 2005/01/17 10:02:51 claratte Exp $</tt>. </p>
+          <p>Remarquez les espaces verticaux et horizontaux. Ils font partis du 
+            standard. </p>
+          <p>Les <span class="QUOTE">&lt;&lt;&nbsp;marqueurs&nbsp;&gt;&gt;</span> 
+            comme <tt class="literal">// {{{</tt> et <tt class="literal">// }}}</tt> 
+            sont optionnels. Si vous ne les utilisez pas, effacez <tt 
+      class="literal">foldmethod=marker</tt> de l'en-tête vim. </p>
+          <p>L'exemple contient beaucoup de détails sur l'écriture des commentaires 
+            de block. Suivre ces instructions est très important et ceci pour 
+            deux raisons. Premièrement, lorsque les blocks de documentations sont 
+            facilement lisibles, les utilisateurs et les développeurs peuvent 
+            rapidement comprendre ce que votre code fait. Deuxièmement, le site 
+            web PEAR contient maintenant le phpDocumentor générant une documentation 
+            pour chaque release de chaque paquetage, donc, gardez à l'esprit qu'une 
+            bonne documentation de l'API sur le site web est très utile. </p>
+          <p> </p>
+          <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" 
+        border="0">
+            <tbody>
+              <tr> 
+                <td><pre class="php"><code><font color="#000000">
+<font color="#0000bb">&lt;?php
+</font><font color="#666666">/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
+// +----------------------------------------------------------------------+
+// | PHP version 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// +----------------------------------------------------------------------+
+// | Copyright (c) 1997-2004 The PHP Group&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// +----------------------------------------------------------------------+
+// | This source file is subject to version 3.0 of the PHP license,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// | that is bundled with this package in the file LICENSE, and is&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// | available through the world-wide-web at the following url:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// | http://www.php.net/license/3_0.txt.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// | If you did not receive a copy of the PHP license and are unable to&nbsp;&nbsp;&nbsp;|
+// | obtain it through the world-wide-web, please send a note to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// | license@php.net so we can mail you a copy immediately.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// +----------------------------------------------------------------------+
+// | Authors: Original Author &lt;author@example.com&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name &lt;you@example.com&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+// +----------------------------------------------------------------------+
+//
+// $Id: PEAR\040coding\040standards.html,v 1.1 2005/01/17 10:02:51 claratte Exp $
+ 
+</font><font color="#7f007f">require_once </font><font color="#007f00">'PEAR.php'</font><font color="#7f007f">;
+ 
+</font><font color="#666666">// {{{ constants
+ 
+/**
+* Ceci est un "block de commentaire", aussi connu sous le nom de "dockblock".
+* La classe dockblock ci-dessous, contient une description compl&amp;egrave;te
+* sur la fa&amp;ccedil;on de l'&amp;eacute;crire.
+*/
+</font><font color="#0000bb">define</font><font color="#7f007f">(</font><font color="#007f00">'NET_SAMPLE_OK'</font><font color="#7f007f">, </font><font color="#0000bb">1</font><font color="#7f007f">);
+ 
+</font><font color="#666666">// }}}
+// {{{ Net_Sample
+ 
+/**
+* Un exemple sur comment &amp;eacute;crire du code standard PEAR
+*
+* Les commentaires Dockblock commencent par "/**" en haut. Notez comment
+* "/" est align&amp;eacute; avec l'indentation normal et les ast&amp;eacute;risques des lignes suivantes
+* sont align&amp;eacute;s avec le premier ast&amp;eacute;risque. La derni&amp;egrave;re ligne du texte du 
+* commentaire doit &amp;ecirc;tre imm&amp;eacute;diatement suivie par la prochaine ligne d'un
+* ast&amp;eacute;risque de cl&amp;ocirc;ture, d'un slash (/), et l'&amp;eacute;l&amp;eacute;ment que vous avez comment&amp;eacute;
+* doit &amp;ecirc;tre &amp;agrave; la prochaine ligne. N'ajoutezpas de lignes suppl&amp;eacute;mentaires. Merci
+* d'ins&amp;eacute;rer une ligne vide entre les paragraphes tout comme entre la fin de la
+* description et le d&amp;eacute;but du tag @tags. Tronquez les lignes des commentaires
+* &amp;agrave; 80 colonnes, afin d'&amp;ecirc;tre lisible facilement pour une grande partie des
+* utilisateurs.
+*
+* Dockblocks peuvent &amp;eacute;galement &amp;ecirc;tre utilis&amp;eacute;s pour la construction de la 
+* programmation (classes, propri&amp;eacute;t&amp;eacute;s, m&amp;eacute;thodes, defines, includes, globals).
+* Voir la documentation de phpDocumentor pourplus d'informations.
+* http://phpdoc.org/docs/HTMLSmartyConverter/default/phpDocumentor/tutorial_phpDocumentor.howto.pkg.html
+*
+* Le "Javadoc Style Guide" est une excellente ressource sur ce que l'on doit mettre comme
+* informations dans les blocks de commentaires. La plupart de ce qui est &amp;eacute;crit ici n'est qu'un r&amp;eacute;sum&amp;eacute;
+* de ce que vous pourrez trouver dans le document "Javadoc Style Guide" bien que
+* dans quelques cas, ce qui a &amp;eacute;t&amp;eacute; &amp;eacute;crit ici est en contradiction avec le document.
+* http://java.sun.com/j2se/javadoc/writingdoccomments/index.html#styleguide
+*
+* La premi&amp;egrave;re ligne de n'importe quel docblock est un r&amp;eacute;sum&amp;eacute;. Fa&amp;icirc;tes en sorte que ce r&amp;eacute;sum&amp;eacute; soit court,
+* sans point &amp;agrave; la fin. Les r&amp;eacute;sum&amp;eacute;s pour les classes, les propri&amp;eacute;t&amp;eacute;s et les constantes ne doivent
+* pas avoir de sujet mais simplement la pr&amp;eacute;sentation de l'objet, parce qu'ils d&amp;eacute;crivent des choses 
+* plut&amp;ocirc;t que des actions ou des comportements.
+*
+* En suivant, il y a les tags commun&amp;eacute;ment utilis&amp;eacute;s pour la classe. @category et @access sont requis.
+* Le reste doit uniquement &amp;ecirc;tre utilis&amp;eacute; lorsque cel&amp;agrave; est n&amp;eacute;cessaire.
+* Merci de les utiliser dans l'ordre dans lequel ils apparaissent. phpDocumentor a bien d'autres tags
+* disponible, n'h&amp;eacute;sitez pas &amp;agrave; les utiliser.
+*
+* @category nomdelacategorie
+* @package&nbsp;&nbsp;nomdupaquetage
+* @author&nbsp;&nbsp;&nbsp;Auteur original &lt;author@example.com&gt;
+* @version&nbsp;&nbsp;$Id: PEAR\040coding\040standards.html,v 1.1 2005/01/17 10:02:51 claratte Exp $
+* @access&nbsp;&nbsp;&nbsp;public
+* @see&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NetOther, Net_Sample::Net_Sample()
+* @since&nbsp;&nbsp;&nbsp;&nbsp;Classe disponible depuis la Release 1.2.0
+* @deprecated Classe d&amp;eacute;pr&amp;eacute;ci&amp;eacute;e dans la Release 2.0.0
+*/
+</font><font color="#7f007f">class </font><font color="#0000bb">Net_Sample
+</font><font color="#7f007f">{
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#666666">// {{{ properties
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Le statut de l'univers des foo
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Valeurs potentielles : 'good', 'fair', 'poor' et 'unknown'.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @var string
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f007f">var </font><font color="#0000bb">$foo </font><font color="#7f007f">= </font><font color="#007f00">'unknown'</font><font color="#7f007f">;
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#666666">/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Le statut de la vie
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Notez que les noms des propri&amp;eacute;t&amp;eacute;s ou m&amp;eacute;thodes priv&amp;eacute;es doivent
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* &amp;ecirc;tre pr&amp;eacute;c&amp;eacute;d&amp;eacute;s par un underscore (_).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @var bool
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @access private
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f007f">var </font><font color="#0000bb">$_good </font><font color="#7f007f">= </font><font color="#0000bb">true</font><font color="#7f007f">;
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#666666">// }}}
+&nbsp;&nbsp;&nbsp;&nbsp;// {{{ setFoo()
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;/**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Enregistre le statut de l'univers des foo
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Les r&amp;eacute;sum&amp;eacute;s pour les m&amp;eacute;thodes doivent utiliser la troisi&amp;egrave;me personne plut&amp;ocirc;t
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* que la deuxi&amp;egrave;me personne, en commencant la phrase par un verbe.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Les r&amp;eacute;sum&amp;eacute;s doivent avoir une description et pas seulement le nom de la m&amp;eacute;thode.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Le meilleur nom pour une m&amp;eacute;thode est un nom qui d&amp;eacute;crit la m&amp;eacute;thode, ce qui signifie que
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* le nom lui m&amp;ecirc;me d&amp;eacute;crit basiquement ce que fait la m&amp;eacute;thode.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Si le r&amp;eacute;sum&amp;eacute; r&amp;eacute;p&amp;egrave;te sous forme de phrase le nom de la m&amp;eacute;thode, il n'apporte aucune information
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* suppl&amp;eacute;mentaire.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Exemples de r&amp;eacute;sum&amp;eacute; :
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;+ Sets the label&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(pr&amp;eacute;f&amp;eacute;r&amp;eacute;)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;+ Set the label&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&amp;agrave; &amp;eacute;viter)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;+ This method sets the label&nbsp;&nbsp;(&amp;agrave; &amp;eacute;viter)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* En suivant, les tags couramment utilis&amp;eacute; pour la m&amp;eacute;thode. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Un tag @param est requis pour chaque param&amp;egrave;tre de la m&amp;eacute;thode.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Les tags @return et @access sont obligatoires. Le tag @throws est requis si
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* la m&amp;eacute;thode utilise les exceptions. @static est requis si la m&amp;eacute;thode peut &amp;ecirc;tre
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* appel&amp;eacute;e statiquement. Le reste doit uniquement &amp;ecirc;tre utilis&amp;eacute; que lorsque cel&amp;agrave; est n&amp;eacute;cessaire.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Merci de les utiliser dans l'ordre dans lequel ils apparaissent ici.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* phpDocumentor a bien d'autres tags disponible, n'h&amp;eacute;sitez pas &amp;agrave; les utiliser.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Le tag @param contient le type de donn&amp;eacute;es, le nom du param&amp;egrave;tre, suivi d'une description.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Par conventin, le premier nom dans la description est le type de donn&amp;eacute;es du param&amp;egrave;tre.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Les articles comme "a", "an", et&nbsp;&nbsp;"the" peuvent pr&amp;eacute;c&amp;eacute;d&amp;eacute;s le nom. La description doit commencer
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* avec une phrase. L'ajout de deux espaces entre le nom et la description am&amp;eacute;liore la 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* lisibilit&amp;eacute;.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Lorsque vous &amp;eacute;crivez une expression, ne mettez aucune lettre en majuscule et n'ajoutez pas de point
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* &amp;agrave; la fin :
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;+ the string to be tested
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Lorsque vous &amp;eacute;crivez expression, suivi d'une phrase, ne metez pas en majuscule
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* l'expression mais finissez l&amp;agrave; par un point pour la distinguer du d&amp;eacute;but la prochaine expression :
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;+ the string to be tested. Must use UTF-8 encoding.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Le tag @return contient le type de donn&amp;eacute;es ainsi qu'une description des donn&amp;eacute;es retourn&amp;eacute;es.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Le type des donn&amp;eacute;es peuvent &amp;ecirc;tre n'importe quel type de donn&amp;eacute;es PHP
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* (int, float, bool, string, array, object, resource, mixed) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* et doit contenir le premier type retourn&amp;eacute;. Par exemple, si une m&amp;eacute;thode
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* retourne un objet lorsque quelque chose fonctionne correctement mais retourne FALSE
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* si une erreur survient, dite 'object' plut&amp;ocirc;t que 'mixed'. Utilisez 'void' si rien n'est retourn&amp;eacute;.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @param string $arg1&nbsp;&nbsp;the string to quote
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @param int&nbsp;&nbsp;&nbsp;&nbsp;$arg2&nbsp;&nbsp;an integer of how many problems happened.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indent to the description's starting point
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for long ones.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @return int&nbsp;&nbsp;the integer of the set mode used. FALSE if foo
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foo could not be set.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @throws exceptionclass&nbsp;&nbsp;[description]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @access public
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @static
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @see Net_Sample::$foo, Net_Other::someMethod()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @since Method available since Release 1.2.0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* @deprecated Method deprecated in Release 2.0.0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f007f">function </font><font color="#0000bb">setFoo</font><font color="#7f007f">(</font><font color="#0000bb">$arg1</font><font color="#7f007f">, </font><font color="#0000bb">$arg2 </font><font color="#7f007f">= </font><font color="#0000bb">0</font><font color="#7f007f">)
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#666666">/*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Ceci est un commentaire de block. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Le format est le m&amp;ecirc;me que les docblocks, except&amp;eacute;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* qu'il n'y a qu'un seul ast&amp;eacute;risque au d&amp;eacute;but. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* phpDocumentor n'analysera pas celui-ci.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#7f007f">if (</font><font color="#0000bb">$arg1 </font><font color="#7f007f">== </font><font color="#007f00">'good' </font><font color="#7f007f">|| </font><font color="#0000bb">$arg1 </font><font color="#7f007f">== </font><font color="#007f00">'fair'</font><font color="#7f007f">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000bb">$this</font><font color="#7f007f">-&gt;</font><font color="#0000bb">foo </font><font color="#7f007f">= </font><font color="#0000bb">$arg1</font><font color="#7f007f">;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000bb">1</font><font color="#7f007f">;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elseif (</font><font color="#0000bb">$arg1 </font><font color="#7f007f">== </font><font color="#007f00">'poor' </font><font color="#7f007f">&amp;&amp; </font><font color="#0000bb">$arg2 </font><font color="#7f007f">&gt; </font><font color="#0000bb">1</font><font color="#7f007f">) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000bb">$this</font><font color="#7f007f">-&gt;</font><font color="#0000bb">foo </font><font color="#7f007f">= </font><font color="#007f00">'poor'</font><font color="#7f007f">;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000bb">2</font><font color="#7f007f">;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000bb">false</font><font color="#7f007f">;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#666666">// }}}
+</font><font color="#7f007f">}
+ 
+</font><font color="#666666">// }}}
+ 
+/*
+* Local variables:
+* tab-width: 4
+* c-basic-offset: 4
+* c-hanging-comment-ender-p: nil
+* End:
+*/
+ 
+</font><font color="#0000bb">?&gt;</font>
+</font>
+</code></pre></td>
+              </tr>
+            </tbody>
+          </table></P>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body></html>

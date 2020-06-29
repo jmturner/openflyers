@@ -1,0 +1,121 @@
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * menu.css
+ *
+ * Cascading stylesheet for menu
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program (file license.txt);
+ * if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * 
+ * @category   Cascading stylesheet
+ * @author     Christophe Laratte <christophe.laratte@openflyers.org>
+ * @copyright  2003-2005 The OpenFlyers Group <devteam@openflyers.org>
+ * @license    http://www.gnu.org/licenses/gpl.html  GNU-GPL License
+ * @version    CVS: $Id: menu.css,v 1.4.2.3 2006/05/21 09:41:19 claratte Exp $
+ * @link       http://openflyers.org
+ * @since      Fri Dec 13 2002
+ */
+
+/***** menu CSS *****/
+@media print {
+/*A l'impression on cache le menu, marche au moins pour IE, Moz et Opéra.*/
+	.menu, .ssmenu {
+		visibility:hidden;
+	}
+}
+
+.menu, .ssmenu {
+	background-color:#A0B0C0;
+	font-size:0.9em;
+	font-weight:bold;
+	padding:0px;
+/* width et margin sont au cas où le javascript est désactivé. */
+	width:10em;
+}
+
+.ssmenu {border:2px solid #A0B0C0;}
+
+/* .menu = les cases toujours visibles (comme Fichier, Edition... dans un logiciel) */
+.menu {text-align:center;}
+
+/* .ssmenu = Les parties "déroulantes" qui s'affiche au survol d'un .menu */
+.ssmenu {white-space : nowrap; text-align:left;}
+
+.menu span, .ssmenu span {
+/* Ne pas toucher
+	C'est pour cacher les ; en fin de <li>, ce qui permet aux synthèse vocales de prendre une
+	pause dans l'élocution */
+	display:none;
+}
+
+.ssmenu ul, .ssmenu li {
+/* Ne pas trop toucher.
+	Les items (les <li>) des sous-menus, notamment pour enlever les puces des liste */
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+
+.menu a, .menu a:visited {
+/* Les liens qui ne sont pas sous le curseur. */
+	color:white;
+	padding:1px;
+	text-decoration:none;
+/* Ne pas modifier le block */
+	display:block;
+/*	Un width:100% fait planter Mozilla, sans le width:100% c'est IE et Opera... La combinaison
+	aucun width et height:100% marche sur tous, donc ne pas toucher ces 2 lignes */
+/*	height:100%;
+	margin:0px;*/
+	margin:0px;
+	width:100%;
+}
+
+.ssmenu a, .ssmenu a:visited {
+/* Les liens qui ne sont pas sous le curseur. */
+	color:white;
+	padding:1px;
+	text-decoration:none;
+/* Ne pas modifier le block */
+/*	Un width:100% fait planter Mozilla, sans le width:100% c'est IE et Opera... La combinaison
+	aucun width et height:100% marche sur tous, donc ne pas toucher ces 2 lignes */
+/*	height:100%;
+	margin:0px;*/
+	margin:0px;
+	width:100%;
+}
+
+.ssmenu a, .ssmenu a:visited {padding-left:1em;}
+
+html>body .menu a, html>body .menu a:visited, html>body .menu a:hover, html>body .menu a:active,
+html>body .ssmenu a, html>body .ssmenu a:visited, html>body .ssmenu a:hover, html>body .ssmenu a:active {
+	width:auto;
+}
+
+/* Les liens sous le curseur.*/
+.ssmenu ul:hover, .ssmenu a:hover, .ssmenu a:focus, .menu a:hover, .menu a:focus {color:#607080;text-decoration:none; }
+
+.menu a.active,a:visited.active {color:#607080;}
+.ssmenu a.active,a:visited.active {color:#607080;}
+
+/*
+Bref... pour résumer, ce qu'il y a à modifier à la base, c'est :
+- couleurs, police, bordure.
+- l'effet spécial IE pour les ssmenu si on aime ça...
+- police et couleurs des liens "non survolés" et "survolés".
+*/

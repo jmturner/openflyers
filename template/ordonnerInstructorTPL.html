@@ -1,0 +1,56 @@
+<style>
+{STYLE}
+</style>
+<div>
+<form action="index.php" name="ranker" method="post">
+{FILECONTENT}
+{FORMCONTENT}
+<input type="button" name="validation" value="{VALIDATE}" onclick="testOrder({MAXINST});" />
+<input type="hidden" name="type" value="user" />
+<input type="hidden" name="ope" value="ranking" />
+</form>
+</div>
+<script type="text/javascript">
+<!--
+
+function isInTarget(myAircraft, maxNumber)
+{
+	var i_isInTarget = 0;
+	while (i_isInTarget < maxNumber)
+	{
+		if ((dd.elements[myAircraft].y < 200+60*i_isInTarget) && (dd.elements[myAircraft].y > 150+60*i_isInTarget))
+		{ 
+			return true;
+		}
+		i_isInTarget++;
+	}
+	return false;
+}
+
+function testOrder(max_testOrder)
+{
+	myOrderTest = true;
+	for (i_testOrder = 0; i_testOrder < max_testOrder; i_testOrder++)
+	{
+		if (!isInTarget('instructor'+i_testOrder, max_testOrder))
+		{
+			alert('Erreur de placement');
+			myOrderTest = false;
+			break;
+		}
+		else
+		{
+			myvarname = 'instructor_y_tab['+i_testOrder+']';
+		 	document.ranker.elements[2*i_testOrder+1].value =  dd.elements['instructor'+i_testOrder].y;
+		}
+	}
+	if (myOrderTest)
+	{
+		document.ranker.submit();
+	}
+}
+
+
+{JAVASCRIPT}
+//-->
+</script>

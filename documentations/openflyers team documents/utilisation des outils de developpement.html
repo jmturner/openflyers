@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>Utilisation des outils de d&eacute;veloppement</title>
+</head>
+<body>
+<div align="center">
+<h1>Utilisation des outils de d&eacute;veloppement</h1>
+</div>
+<div align="center"><font face="Helvetica, Arial, sans-serif">
+$Id: utilisation\040des\040outils\040de\040developpement.html,v 1.2
+2003/10/14 12:27:13 claratte Exp $ </font><br>
+<font face="Helvetica, Arial, sans-serif">Purpose: description des
+outils utilis&eacute;s par l'&eacute;quipe d'OpenFlyers</font><br>
+<font face="Helvetica, Arial, sans-serif">Author: Patrice GODARD
+amended by Christophe LARATTE</font><br>
+<div style="text-align: justify;"><br>
+Pour r&eacute;cup&eacute;rer (update) et/ou mettre &agrave; jour
+(commit) les fichiers CVS (Concurrent Version System) depuis
+SourceForge, un certain nombre de manipulations sont n&eacute;cessaires.<br>
+<br>
+Tout d'abord, il faut avoir un compte ouvert sur SourceForge. Cette
+op&eacute;ration est une d&eacute;marche personnelle.<br>
+<br>
+Ensuite, il faut &ecirc;tre autoris&eacute; &agrave; l'acc&egrave;s des
+fichiers CVS d'OpenFlyers. Pour cela, il faut demander &agrave;
+l'&eacute;quipe de d&eacute;veloppement OpenFlyers.<br>
+<br>
+Une fois, ces primilaires effectu&eacute;s, il faut utiliser un outil
+pour cr&eacute;er une copie locale sur son ordinateur des fichiers CVS
+d'OpenFlyers.<br>
+<br>
+Nous expliquons ci-dessous la d&eacute;marche &agrave; suivre avec
+TortoiseCVS. Tout d'abord dans le cas d'un acc&egrave;s public (pas de
+compte ouvert ni d'autorisation requise) ensuite dans le cas d'un
+acc&egrave;s prot&eacute;g&eacute;.<br>
+</div>
+</div>
+<h2>Installation de TortoiseCVS pour r&eacute;cup&eacute;rer les
+fichiers CVS en anomyne (sans possibilit&eacute; de faire des
+modifications : acc&egrave;s public)<br>
+</h2>
+TortoiseCVS est un client CVS qui s'int&egrave;gre &agrave;
+l'explorateur windows. Il est t&eacute;l&eacute;chargeable ici : <a
+ href="http://www.tortoisecvs.org/">http://www.tortoisecvs.org/</a>
+<br>
+<br>
+Apr&egrave;s installation et reboot, faire dans un r&eacute;pertoire
+quelconque : clic droit puis "CVS emprunter".<br>
+<br>
+Dans le 'CVSROOT', "chaine de connexion CVS", mettre:
+:pserver:anonymous@cvs.sourceforge.net:/cvsroot/openflyers<br>
+<br>
+<img
+ src="utilisation%20des%20outils%20de%20developpement_files/tortoise.gif"
+ alt="Fen&ecirc;tre de configuration de Tortoise" height="482" width="544">
+<br>
+<br>
+<h2>Installation de TortoiseCVS pour un acc&egrave;s complet aux
+fichiers CVS</h2>
+<br>
+Par rapport &agrave; l'image ci-dessus, il suffit de remplacer :<br>
+<ul>
+  <li>en protocole :pserver: par :ext: (secure shell)<br>
+  </li>
+  <li>en nom d'utilisateur le nom du compte sur sourceforge
+(sourceforge v&eacute;rifiera alors que vous avez bien les droits
+d'acc&egrave;s prot&eacute;g&eacute;)</li>
+</ul>
+C'est tout.<br>
+<br>
+Lors de chaque acc&egrave;s, il vous sera demand&eacute; un mot de
+passe. Ce mot de passe correspond au mot de passe de votre acc&egrave;s
+&agrave; sourceforge que vous avez choisi lorsque vous avez
+cr&eacute;&eacute; votre compte sur sourceforge.<br>
+<br>
+Si vous voulez &eacute;viter d'entrer votre mot de passe &agrave;
+chaque commit/update depuis tortoiseCVS, vous pouvez cr&eacute;er un
+acc&egrave;s s&eacute;curis&eacute; &agrave; l'aide d'une cl&eacute;
+public et d'une cl&eacute; priv&eacute;e.Pour cela, il faut utiliser
+les outils&nbsp; de la suite Putty.<br>
+<h2>Utilisation de la suite Putty pour g&eacute;n&eacute;rer un
+acc&egrave;s s&eacute;curis&eacute; &agrave; sourceforge</h2>
+Vous avez besoin de :<br>
+<ul>
+  <li>putty</li>
+  <li>puttygen</li>
+  <li>pageant</li>
+</ul>
+Commencer par cr&eacute;er une double cl&eacute; (public/priv&eacute;e
+&agrave; l'aide de puttygen)<br>
+<br>
+<img alt="g&eacute;n&eacute;ration de la cl&eacute;"
+ src="utilisation%20des%20outils%20de%20developpement_files/putty-keygen-start.jpg"
+ style="width: 482px; height: 470px;"><br>
+<br>
+Mettez en "parameters" SSH2 DSA, puis cliquez sur "generate" (il faut
+bouger la souris dans la zone de puttygen)<br>
+<br>
+<img alt=""
+ src="utilisation%20des%20outils%20de%20developpement_files/putty-keygen-complete.jpg"
+ style="width: 482px; height: 470px;"><br>
+<br>
+Une fois la cl&eacute; g&eacute;n&eacute;r&eacute;e, en commentaire
+mettez votre "username" de sourceforge suivi de "sourceforge.net".<br>
+<br>
+Vous devez &eacute;galement saisir un mot de passe dans "key
+passphrase" et "confirm passphrase" qui vous sera demand&eacute; par la
+suite par Pageant.<br>
+<br>
+<img alt=""
+ src="utilisation%20des%20outils%20de%20developpement_files/putty-save-private-key.jpg"
+ style="width: 562px; height: 415px;"><br>
+<br>
+Sauvez la cl&eacute; priv&eacute;e sur votre disque dur. Utilisez comme
+extension ".ppk"<br>
+<br>
+<img alt=""
+ src="utilisation%20des%20outils%20de%20developpement_files/putty-upload-private-key.jpg"
+ style="width: 1031px; height: 775px;"><br>
+<br>
+Puis rendez-vous sur sourceforge afin de fournir la cl&eacute; public.
+Pour cela, il suffit d'aller sur la page d'&eacute;dition des
+param&ecirc;tres de votre compte (account maintenance, ou account
+options), de cliquer sur "<a
+ href="http://sourceforge.net/account/editsshkeys.php">[Edit SSH Keys
+for Shell/CVS]</a>" en bas de la page, et enfin de faire un
+copier/coller de la "public key for pasting into OpenSSH
+authorized_keys2 file" visible sur puttygen (il faut tout copier) et de
+le coller dans le formulaire de saisi de sourceforge. Cliquez sur
+update, laisser s&eacute;cher selon le temps indiqu&eacute; <a
+ href="http://sourceforge.net/docman/display_doc.php?docid=761&amp;group_id=1#syncdelay">ici</a>.<br>
+<br>
+Vous pouvez quitter puttygen et lancer putty.<br>
+<br>
+<img alt=""
+ src="utilisation%20des%20outils%20de%20developpement_files/ScreenShot001.jpg"
+ style="width: 428px; height: 437px;"><br>
+<br>
+Configurez Host Name comme indiqu&eacute; ci-dessus<br>
+<br>
+<img alt=""
+ src="utilisation%20des%20outils%20de%20developpement_files/ScreenShot002.jpg"
+ style="width: 426px; height: 435px;"><br>
+<br>
+V&eacute;rifiez sur la page 'SSH' que vous avez bien le protocole 2 de
+sp&eacute;cifi&eacute;.<br>
+<br>
+<img alt=""
+ src="utilisation%20des%20outils%20de%20developpement_files/ScreenShot003.jpg"
+ style="width: 427px; height: 436px;"><br>
+<br>
+Et idem pour la page 'Auth'.<br>
+<br>
+Enfin sauvez votre nouvelle configuration (session) sous le nom
+'sourceforge' par exemple.<br>
+<br>
+Si cela fonctionne correctement, vous devez avoir :<br>
+<br>
+"Welcome to cvs1.sourceforge.net<br>
+<br>
+This is a restricted Shell Account<br>
+You cannot execute anything here."<br>
+<h2>Param&eacute;trage de pageant</h2>
+Pour utiliser avec TortoiseCVS cette nouvelle configuration, il vous
+suffit de lancer pageant (avant TortoiseCVS). Cliquez sur son icone
+dans la barre des t&acirc;ches, "ajouter une cl&eacute;" en
+s&eacute;lectionnant comme nom de fichier celui que vous avez
+pr&eacute;c&eacute;demment cr&eacute;&eacute; avec PuttyGen. Il va vous
+demander un mot de passe, c'est celui que vous avez cr&eacute;&eacute;
+avec PuttyGen.<br>
+<br>
+Vous pouvez maintenant utiliser TortoisePLink sans avoir &agrave;
+saisir de nouveau mot de passe.<br>
+<br>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>Database description</title>
+</head>
+<body>
+<div align="center">
+<h1>Hours and dates</h1>
+$Id: hours_and_dates.html,v 1.8 2004/06/16 12:26:13 claratte Exp $ <br>
+Purpose: description of OpenFlyers hours and dates<br>
+Author: Christophe Laratte<br>
+</div>
+<br>
+<i>Everytime, it is possible, we respect the <a
+ href="http://www.w3.org/TR/NOTE-datetime">International Standard Date
+and Time Notation (ISO 8601)</a>.<br>
+</i><i>On the other hand we try to offer different representations for
+users.<br>
+</i><br>
+<i>OpenFlyers Date classes override <a
+ href="http://pear.php.net/package/Date">PEAR::Date</a> classes
+included in OF package.<br>
+<br>
+</i>A date (i.e. hour + date like "2004-01-23 15:23:56") saved in
+OpenFlyers (OF) database <b>is always an UTC date</b>.<br>
+&nbsp;<br>
+Hours are saved in GMT, all calculations are also made in GMT, only the
+display is in local time.<br>
+<h1>Dates<br>
+</h1>
+<h2>Pure PHP<br>
+</h2>
+We only use OF_Date class. This class override PEAR::Date class.<br>
+<br>
+All Date variables have no prefixe. They also should terminate by
+"_date" (or named "date").<br>
+<h2>PHP and JavaScript<br>
+</h2>
+The format used to send variables between php and javascript (postvars)
+is the <b>DATE_FORMAT_TIMESTAMP : YYYYMMDDHHMMSS</b><br>
+Ex : 20040123152356<br>
+Such postvars are prefixed "ts_".<br>
+<h2>PHP and SQL<br>
+</h2>
+The format used between php and sql is the <b>DATE_FORMAT_ISO :
+YYYY-MM-DD HH:MM:SS</b><br>
+Ex : 2004-01-23 15:23:56<br>
+<br>
+It's also the default format for the return value of getDate() function
+of OF_Date class and can be used as default to initiate &agrave; new
+Date()
+class.<br>
+<h1>Times and Date Spans<br>
+</h1>
+<h2>Pure PHP<br>
+</h2>
+We only use OF_Date_Span class. This class override PEAR::Date_Span
+class.<br>
+<br>
+Like for Date variables, all Date_Span variables have no prefixe, are
+OF_Date
+class format. They also should terminate by "_time" (or named "time").<br>
+<br>
+Regular avalaibilities for instructors are saved in local time. i.e. :
+if an instructor is avail on monday from 10 o'oclock to 12 o'clock, we
+saved 10 and 12. And we assume that 10 and 12 o'clock are in local time.<br>
+<br>
+A week begin on Sunday. The value of Sunday is 0.<br>
+<br>
+<h2>PHP and JavaScript<br>
+</h2>
+The format used to send variables between php and javascript (postvars)
+is NNSV (Non Numeric Separated Values) <b>D,HH:MM</b> where D is the
+day of the week<br>
+Ex : 3,15:23<br>
+Such postvars are prefixed "ts_".<br>
+<br>
+We also used local time values between JavaScript and PHP. These values
+are send by forms.<br>
+These are : start_year, start_month, start_day, start_hour,
+start_minute, end_year, end_month, end_day, end_hour, end_minute.<br>
+<br>
+<ul>
+  <li>Attention : bug en vu : lorsqu'un cr&eacute;neau commence le jour
+affich&eacute;
+mais &agrave; une heure ant&eacute;rieure &agrave; la premi&egrave;re
+heure
+affich&eacute;e</li>
+  <li>Attention : bug en vu : idem pour un cr&eacute;neau qui commence
+apr&egrave;s la derni&egrave;re heure affich&eacute;e</li>
+  <li>Attention : bug en vu : pire, si le cr&eacute;neau est totalement
+compris
+dans une zone non affich&eacute;e mais pour la bonne journ&eacute;e.</li>
+</ul>
+</body>
+</html>

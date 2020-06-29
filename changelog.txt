@@ -1,0 +1,220 @@
+***********
+version 1.3
+***********
+
+- Ajout d'un droit permettant de ne pas avoir de déconnexion automatique
+- Compatibilité MySQL 5
+- Affichage par défaut que de ses dispos/indispo lorsqu'on est instructeur
+- Restriction possible de la période de saisie autorisée des résas
+- Possibilité de ne lister que ses résas
+- Création de la notion d'avion non réservable
+- Différenciation de la durée mini d'une résa double par rapport à une résa solo
+- Il est maintenant possible d'effectuer des imports successifs de fichiers CSV
+- Ajout de bandeaux horaires espacés au maximum de 10 avions/instructeurs
+- Possibilité pour le club de ne pas faire afficher l'immatriculation d'un avion
+- Limitation de la durée maximum d'une résa
+- Annulation possible des résas entammées en ramenant l'heure de fin à l'heure
+ courante
+
+***********
+version 1.2
+***********
+
+- refonte de la classe d'interrogation des LS/CS au profit d'un calcul interne
+- ajout de l'heure de lever et de coucher aéronautique
+- ajout du logo du club en page d'accueil
+- ajout d'un champ dans les tables aircrafts et instructors permettant
+d'ordonner les avions et les instructeurs
+- mise en partie au standard XHTML 1.0 (transitional voir strict) de la partie
+cahier il subsiste des écarts du notamment au CalendarPopup
+- correction d'un bug de couleur dans la légende apparu dans la version 1.1
+- rajout de tests qui empêchent de faire des résas dans le passé
+- correction d'un bug de sélection des avions à afficher lorsque le nombre est
+supérieur à 10
+- conversion des dates de la base de données en UTC
+- suppression de l'affichage vertical du cahier et transformation des routines
+d'affichage (permet d'être à cheval sur 2 jours et tient compte du changement
+d'heure)
+- modification de la classe user_session permettant d'avoir les données à jour
+de la base et ne nécessitant plus de se déconnecter après une modification dans
+la partie administration
+- rajout d'une fonctionnalité qui permet à un individu qui est instructeur
+d'avoir directement son propre cahier lorsqu'il sélectionne le menu "cahier
+instructeur".
+- Conversion des <? en <?php
+- modification de la présentation de la pages "données"
+- internationalisation
+- bloquage des intrusions de type "force brute"
+- la combo "année" commence désormais à l'année en cours (avant c'était 2003)
+- rajout dans la base des numéros de téléphone et de l'adresse pour chaque
+personne. Possibilité de rendre visible ou non ces informations pour les autres
+membres du club.
+- rajout d'un check-box dans la liste des disponibilités exceptionnelles des
+instructeurs permettant de ne voir (par défaut) que celles qui ne sont pas
+dépassées.
+- gestion des qualifications.
+- suppression du multi-clubisme.
+- diminution de la taille en Ko du cahier (jusqu'à 60% de réduction pour une
+page vierge) par utilisation de la technologie DHTML
+- confirmation des réservations par mail
+- débrayage de la gestion des cotisations
+- Maj de CalendarPopup d'après la version (29/03/04) disponible sur le site de
+l'auteur (http://www.mattkruse.com/) corrigée pour suppression de WIDTHs
+- rajout du fichier checkIdent.php permettant à un site tiers de vérifier une
+identification à l'aide de la base de données d'OF
+- rajout de mentions légales sur la page d'identification
+- création d'un mode débug qui permet : d'afficher le temps de calcul, de ne pas
+incrémenter les mauvais login, de ne pas avoir de déconnexion automatique
+- vérifications de sureté (présence de répertoires et d'identifiants)
+
+***********
+version 1.1
+***********
+
+- ajout d'un champ CLUB_SITE_URL dans la table clubs. Ce champ est utilisé dans
+les pages du cahier : un lien est est ajouté au logo.
+- ajout d'un champ COMMENTS dans la aircrafts. Ce champ est utilisé dans les
+pages du cahier : les éventuels commentaires apparaissent dans l'étiquette
+lorsque l'on survole l'immatriculation d'un avion.
+- les immatriculations des avions sur la page du cahier journalier comportent un
+lien vers la page-semaine de l'avion. Une étiquette apparait lorsque l'on
+survole l'immatriculation de l'avion.
+- correction de deux bugs JavaScript dans les formulaires de réservation et des
+créneaux instructeurs. Un apparaissait sous IE (non rafraichissement instantané:
+remplacement de "OnChange" par "OnClick"). Un appel de fonction JavaScript
+inexistante avait lieu dans le formulaire des créneaux instructeurs.
+- ajout de la gestion de la date d'expiration des cotisations.
+- ajout d'un nouveau droit permettant de surpasser une indisponibilité
+instructeur.
+- AIRCRAFT_CALLSIGN->AIRCRAFT_NUM dans la table booking et ajout de NUM dans la
+table aicrafts. Un update de la base est nécessaire pour utiliser cette version.
+- ajout d'un define pour indiquer le numéro de version d'OpenFlyers : OF_RELEASE
+- correction des bugs d'import et d'export dans l'interface admin
+- ajout d'un script de purge des LS/CS
+- ajout d'une procédure d'installation en ligne
+- allègement des fichiers HTML générés
+- visualisation possible des avions et des instructeurs sur la même page.
+- ajout de la gestion de mailing-list (types supportés: ezmlm, mailman,
+majordomo)
+
+*************
+version 1.0.0
+*************
+
+--------------------------------------------------------------------------------
+Bugs corrigés :
+
+OpenFlyers - 1.3.1
+==================
+- 0000426: [Admin] export sql impossible (claratte)
+- 0000487: [Admin] Mail de confirmation en double (claratte)
+- 0000423: [Mise à jour (Update)] Le champ non_bookable n'est pas ajouté à la table aircraft lors de l'update 1.2.0 vers 1.3.0 (claratte)
+- 0000422: [Admin] Table profiles permit types incompatible avec les nouvelles options (claratte)
+- 0000662: [Documentation] Message présent sur l'ensmble des écrans (jdepardieu)
+- 0000566: [Admin] Caractères accentués disparus (claratte)
+- 0000562: [Cahier de résa (booking)] Page vierge lors de la sélection de certains jours (claratte)
+- 0000521: [Admin] Impossible de changer de mode de réservation (claratte)
+- 0000538: [Cahier de résa (booking)] Lenteurs (claratte)
+- 0000392: [Cahier de résa (booking)] Message d'erreur dans l'affichage de la liste des résas (utilisateur35)
+- 0000431: [Cahier de résa (booking)] La disponibilté des instructeurs n'apparait plus sous l'onglet cahier instructeur (visualisation semaine ) (claratte)
+- 0000425: [Cahier de résa (booking)] Erreur si présence instructeur commence avant le dimanche (claratte)
+
+OpenFlyers - 1.3.0
+==================
+- 0000407: [Admin] Mauvais affichage de certains caractères dans les notifications E-mail (claratte)
+- 0000397: [Admin] Erreur sur affichage page (claratte)
+- 0000402: [Cahier de résa (booking)] Impossible de supprimer une résa dans la liste (claratte)
+- 0000400: [Cahier de résa (booking)] Message d'expiration (de qualif ?) sans objet (claratte)
+- 0000396: [Admin] Erreur de notification par mail (claratte)
+- 0000395: [Cahier de résa (booking)] Traitement des erreurs de saisie des identifiants de connexion (claratte)
+- 0000394: [Admin] Ajout d'un droit permettant de ne pas avoir de déconnexion automatique (claratte)
+- 0000345: [Admin] La suppression d'un membre bloque la modification de ses résas. (claratte)
+- 0000393: [Cahier de résa (booking)] Compatibilité MySQL 5 (claratte)
+- 0000391: [Cahier de résa (booking)] N'afficher que ses dispos/indispo lorsqu'on est instructeur (claratte)
+- 0000390: [Cahier de résa (booking)] Restreindre la période de saisie des résas (claratte)
+- 0000389: [Cahier de résa (booking)] Possibilité de ne lister que ses résas (claratte)
+- 0000388: [Cahier de résa (booking)] Les courriers électroniques de confirmation ne contiennent pas de date (claratte)
+- 0000386: [Admin] Champs email limité à 39 caractères - données/affichage et fiche personnelle (claratte)
+- 0000354: [Cahier de résa (booking)] erreur de formatage mail en anglais et italien (claratte)
+- 0000383: [Cahier de résa (booking)] Création de la notion d'avion non réservable (claratte)
+- 0000382: [Cahier de résa (booking)] Différencier la durée mini d'une résa double d'une résa solo (claratte)
+- 0000381: [Admin] Permettre des importations successives de fichiers CSV (claratte)
+- 0000334: [Cahier de résa (booking)] ERREUR RECORDBOONKING (claratte)
+- 0000335: [Cahier de résa (booking)] Gestion des licences (claratte)
+- 0000337: [Cahier de résa (booking)] fenetre trop petite sous IE (claratte)
+- 0000339: [Admin] Balise php dans bouton valider (claratte)
+- 0000346: [Documentation] Dans la page d'accueil, le bouton Aide en ligne envoie vers un fichier qui n'existe plus (claratte)
+- 0000348: [Cahier de résa (booking)] Message d'erreur « mail() returned failure » (claratte)
+- 0000355: [Cahier de résa (booking)] Gestion des cotisations en mode "restreint" empêche la consultation. (claratte)
+- 0000366: [Admin] minuscule/maj dans l'import d'un fichier (claratte)
+- 0000367: [Admin] import homonymes (claratte)
+- 0000379: [Cahier de résa (booking)] Ajout de bandeaux horaires espacés au max de 10 avions/instructeurs (claratte)
+- 0000380: [Cahier de résa (booking)] Possibilité pour le club de ne pas faire afficher l'immat d'un avion (claratte)
+- 0000378: [Cahier de résa (booking)] Limitation de la durée max d'une résa (claratte)
+- 0000347: [Cahier de résa (booking)] Annulation possible des résas entammées en ramenant l'heure de fin à l'heure courante (claratte)
+
+OpenFlyers - 1.2.1
+==================
+- 0000322: [Cahier de résa (booking)] Traduction en espagnol (claratte)
+- 0000221: [Cahier de résa (booking)] Erreur sur l'affichage d'un message d'erreur (claratte)
+- 0000266: [Mise à jour (Update)] Warning lors de l'installation si une base de données non vide existe déjà (claratte)
+- 0000267: [Mise à jour (Update)] Bloquage dans l'installation si une base de données quelconque existe déjà. (claratte)
+- 0000215: [Admin] du code apparait dans un bouton de validation (claratte)
+- 0000315: [Cahier de résa (booking)] Traduction en italien (claratte)
+- 0000234: [Admin] plus d'accés au mode super administrteur "admin" (claratte)
+- 0000233: [Admin] export excel défectueux (claratte)
+
+OpenFlyers - 1.2.0
+==================
+
+Official release
+Version officielle
+
+- 0000214: [Cahier de résa (booking)] Absence de rafraichissement de la page HTML en connexion sans droit (visiteur) (claratte)
+- 0000172: [Cahier de résa (booking)] 1.2rc4 !! ajout des qualifations fonctionnel mais perturbant (claratte)
+- 0000061: [Cahier de résa (booking)] Limitation durée de réservation (claratte)
+- 0000184: [Admin] les fonction de gestion des qualifs ne font pas ce qui est prévu (claratte)
+- 0000191: [Admin] affichage d'un commentaire, il manque un / (claratte)
+- 0000183: [Admin] probleme de nomage dans les profils (claratte)
+- 0000171: [Admin] Le droit d'un profil est nommé "Modification de ses données" au lieu de "Modification des dates de ses qualifs" (claratte)
+- 0000176: [Cahier de résa (booking)] 1.2RC4 manque l'affichage d'un creneau de couleurs pour un instructeur (claratte)
+- 0000179: [Admin] import csv : case "virgule" et "point-virgule" inversées (claratte)
+- 0000169: [Cahier de résa (booking)] Faille dans la gestion des dates obsolètes (claratte)
+- 0000163: [Cahier de résa (booking)] Maj about (claratte)
+- 0000160: [Mise à jour (Update)] Pb d'installation de la RC3 : erreur d'exécution du script d'install (claratte)
+
+OpenFlyers - 1.2RC3
+===================
+- 0000149: [Cahier de résa (booking)] Bug (0000136) concernant l'affichage de la visite médicale persistant (claratte)
+- 0000156: [Admin] Mauvaise configuration du chemin d'accès à PEAR. (claratte)
+- 0000150: [Admin] la fonction Liste de diffusion abonner/desabonner ne fonctionne pas (claratte)
+- 0000155: [Admin] Pas d'affichage du message "L'opération a été effectuée" (claratte)
+- 0000152: [Cahier de résa (booking)] Pop-up de la légende vide (claratte)
+- 0000154: [Admin] Lors de l'install d'une première base, l'accès en admin est impossible (claratte)
+
+OpenFlyers - 1.2RC2
+===================
+
+Version corrigeant des bugs signalés dans la 1.2RC1
+
+- 0000123: [Admin] Faille de sécurité côté admin (zebuline)
+- 0000143: [Cahier de résa (booking)] Blocage des accès instructeurs (claratte)
+- 0000144: [Admin] Licenses (claratte)
+- 0000141: [Admin] Inversion des fonctionnalités du mode restriction et du mode avertissement dans la gestion des licences (claratte)
+- 0000134: [Admin] Suppression d'un profil utilisateur (chakram)
+- 0000145: [Cahier de résa (booking)] Défaut dans la largeur des lignes de l'affichage du cahier (claratte)
+- 0000130: [Admin] Il y a une inversion des séparateurs ";" ou "," dans le menu "Gestion de base" "Importer des utilisateurs"
+- 0000121: [Admin] inversion virgule et point virgule (chakram)
+- 0000122: [Admin] 2 fois la même phrase dans l'import cvs
+- 0000083: [Admin] config club -> cellule info (chakram)
+- 0000115: [Admin] Checkbox email (chakram)
+- 0000014: [Admin] gestion des quotes
+- 0000136: [Cahier de résa (booking)] Message avertissement visite médicale expirée toujours visible (claratte)
+- 0000140: [Cahier de résa (booking)] Décalage des heures affichées sur la règle des instructeurs (2ème règle) (claratte)
+
+OpenFlyers - 1.2RC1
+===================
+
+Release Candidate 1 de la version 1.2
+
+- 0000126: [Admin] Modification du profil Super Admin
